@@ -6,14 +6,14 @@
 #    By: lusanche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 19:27:37 by lusanche          #+#    #+#              #
-#    Updated: 2020/01/17 11:07:43 by lusanche         ###   ########.fr        #
+#    Updated: 2020/01/18 11:06:41 by lusanche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = checker
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SRC = checker_main.c
+SRC = checker_main.c operations.c
 OBJ = $(SRC:.c=.o)
 LIBFT = ulibft/
 LB_H = ulibft/libft.h
