@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/17 20:45:21 by lusanche         ###   ########.fr       */
+/*   Created: 2019/05/16 11:13:28 by lusanche          #+#    #+#             */
+/*   Updated: 2019/09/02 18:26:26 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "ulibft/libft.h"
-# define MAX_CAPACITY 10
-
-typedef struct	s_stack
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	int			array[MAX_CAPACITY];
-	int			top;
-}				t_stack;
+	size_t	i;
 
-void			ps_putstack(t_stack *a);
-
-#endif
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dst[i] = src[i];
+		++i;
+	}
+	while (i <= n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
+}

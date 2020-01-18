@@ -6,38 +6,35 @@
 #    By: lusanche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 19:27:37 by lusanche          #+#    #+#              #
-#    Updated: 2020/01/16 19:29:57 by lusanche         ###   ########.fr        #
+#    Updated: 2020/01/17 11:07:43 by lusanche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = checker
-CC = clang
+CC = gcc
 FLAGS = -Wall -Wextra -Werror
-INCLUDES = libft/includes
-SRCS = checker_main.c x.c y.c z.c
-OBJS = *.o
-LIB_DIR = libft/
+SRC = checker_main.c
+OBJ = $(SRC:.c=.o)
+LIBFT = ulibft/
+LB_H = ulibft/libft.h
 
 $(NAME):
-	@make -C $(LIB_DIR) fclean && make -C $(LIB_DIR)
-	@$(CC) $(FLAGS) -I $(INCLUDES) -c $(SRCS)
-	@$(CC) -o $(NAME) $(OBJS) -I $(INCLUDES) -L $(LIB_DIR) -lft
-	@echo "[INFO]  Executable [$(NAME)] created (objects remaining in both directories)"
+	@make -C $(LIBFT) fclean && make -C $(LIBFT)
+	@$(CC) $(FLAGS) -I $(LB_H) -c $(SRC)
+	@$(CC) -o $(NAME) $(OBJ) -I $(LB_H) -L $(LIBFT) -lft
+	@echo "[INFO] [$(NAME)] created"
 
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@make -C $(LIB_DIR) fclean 
-	@echo "[INFO] Objects removed in both directories"
-	@rm -f .DS* && rm -f ._*
-	@echo "[INFO] ._files removed"
-
+	@rm -f $(OBJ)
+	@make -C $(LIBFT) fclean 
+	@echo "[INFO] Checker Objects removed"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "[INFO] Executable [$(NAME)] removed"
+	@echo "[INFO] [$(NAME)] removed"
 
 re: fclean all
