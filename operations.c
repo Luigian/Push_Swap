@@ -6,28 +6,30 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 11:01:04 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/18 14:11:42 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/20 12:20:00 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, t_stack *b)
 {
+	(void)b;
 	if (a->top > 1)
 		ft_swap(&a->array[a->top - 1], &a->array[a->top - 2]);
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *a, t_stack *b)
 {
+	(void)a;
 	if (b->top > 1)
 		ft_swap(&b->array[b->top - 1], &b->array[b->top - 2]);
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b);
+	sa(a, b);
+	sb(a, b);
 }
 
 void	pa(t_stack *a, t_stack *b)
@@ -42,12 +44,13 @@ void	pb(t_stack *a, t_stack *b)
 		b->array[b->top++] = a->array[--a->top];
 }
 
-void	ra(t_stack *a)
+void	ra(t_stack *a, t_stack *b)
 {
 	int		i;
 	int		save;
 	int		temp;
 
+	(void)b;
 	i = 0;
 	if (a->top > 1)
 	{
@@ -62,12 +65,13 @@ void	ra(t_stack *a)
 	}
 }
 
-void	rb(t_stack *b)
+void	rb(t_stack *a, t_stack *b)
 {
 	int		i;
 	int		save;
 	int		temp;
 
+	(void)a;
 	i = 0;
 	if (b->top > 1)
 	{
@@ -84,15 +88,16 @@ void	rb(t_stack *b)
 
 void	rr(t_stack *a, t_stack *b)
 {
-	ra(a);
-	rb(b);
+	ra(a, b);
+	rb(a, b);
 }
 
-void	rra(t_stack *a)
+void	rra(t_stack *a, t_stack *b)
 {
 	int		i;
 	int		save;
 
+	(void)b;
 	i = 0;
 	if (a->top > 1)
 	{
@@ -106,11 +111,12 @@ void	rra(t_stack *a)
 	}
 }
 
-void	rrb(t_stack *b)
+void	rrb(t_stack *a, t_stack *b)
 {
 	int		i;
 	int		save;
 
+	(void)a;
 	i = 0;
 	if (b->top > 1)
 	{
@@ -126,6 +132,6 @@ void	rrb(t_stack *b)
 
 void	rrr(t_stack *a, t_stack *b)
 {
-	rra(a);
-	rrb(b);
+	rra(a, b);
+	rrb(a, b);
 }
