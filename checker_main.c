@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:03:41 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/20 13:47:57 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/20 19:13:10 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,45 @@ void	ps_runbuff(char buff[100][100], t_stack *a, t_stack *b)
 		++i;
 	}
 }
+	
+void	ps_check(t_stack *a, t_stack *b)
+{
+	int		prev;
+	int		i;
+
+	i = 0;
+	prev = a->array[i];
+	while (i < a->top)
+	{
+		if (a->array[i] > prev)
+			break;
+		prev = a->array[i];
+		++i;
+	}
+	if (i == a->top && b->top == 0)
+			ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+}
 
 int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
 	char		buff[100][100];
-
+	
+	if (argc < 2)
+		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_storebuff(buff);
-	
-	ps_putbuff(buff);
+
+//	ps_putbuff(buff);
 	ps_putstack(&a);
 	ps_putstack(&b);
-	
+
 	ps_runbuff(buff, &a, &b);
-	
+	ps_check(&a, &b);
+
 	ps_putstack(&a);
 	ps_putstack(&b);
 	return (0);

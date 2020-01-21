@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/20 13:37:52 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:09:06 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef void	(*t_funpa)(t_stack *a, t_stack *b);
 
 void			ps_putstack(t_stack *a);
 void			ps_storestacks(t_stack *a, t_stack *b, int argc, char **argv);
+void			ps_storebuff(char buff[100][100]);
+void			ps_putbuff(char buff[100][100]);
+void			ps_funfill(t_funpa f[]);
+int				ps_hash(char *s);
+void			ps_runbuff(char buff[100][100], t_stack *a, t_stack *b);
+void			ps_check(t_stack *a, t_stack *b);
 
 void			sa(t_stack *a, t_stack *b);
 void			sb(t_stack *a, t_stack *b);
