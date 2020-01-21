@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/20 18:09:06 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:03:57 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void			ps_funfill(t_funpa f[]);
 int				ps_hash(char *s);
 void			ps_runbuff(char buff[100][100], t_stack *a, t_stack *b);
 void			ps_check(t_stack *a, t_stack *b);
+int				ps_validarg(char *s);
+int				ps_uniquearg(t_stack *a);
+int				ps_atoi(const char *str);
 
 void			sa(t_stack *a, t_stack *b);
 void			sb(t_stack *a, t_stack *b);
