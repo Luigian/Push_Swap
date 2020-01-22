@@ -6,35 +6,45 @@
 #    By: lusanche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 19:27:37 by lusanche          #+#    #+#              #
-#    Updated: 2020/01/18 11:06:41 by lusanche         ###   ########.fr        #
+#    Updated: 2020/01/22 10:29:13 by lusanche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = checker
+NAME_1 = checker
+NAME_2 = push_swap
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SRC = checker_main.c operations.c
-OBJ = $(SRC:.c=.o)
+SRC_1 = checker_main.c operations.c
+SRC_2 = push_main.c operations.c
+OBJ_1 = $(SRC_1:.c=.o)
+OBJ_2 = $(SRC_2:.c=.o)
 LIBFT = ulibft/
 LB_H = ulibft/libft.h
 
-$(NAME):
+$(NAME_2):
 	@make -C $(LIBFT) fclean && make -C $(LIBFT)
-	@$(CC) $(FLAGS) -I $(LB_H) -c $(SRC)
-	@$(CC) -o $(NAME) $(OBJ) -I $(LB_H) -L $(LIBFT) -lft
-	@echo "[INFO] [$(NAME)] created"
+	@$(CC) $(FLAGS) -I $(LB_H) -c $(SRC_1)
+	@$(CC) -o $(NAME_1) $(OBJ_1) -I $(LB_H) -L $(LIBFT) -lft
+	@echo "[INFO] [$(NAME_1)] created"
+	@rm -f $(OBJ_1)
+	@echo "[INFO] Checker Objects removed"
+	@$(CC) $(FLAGS) -I $(LB_H) -c $(SRC_2)
+	@$(CC) -o $(NAME_2) $(OBJ_2) -I $(LB_H) -L $(LIBFT) -lft
+	@echo "[INFO] [$(NAME_2)] created"
 
 .PHONY: all, clean, fclean, re
 
-all: $(NAME)
+all: $(NAME_2)
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ_2)
 	@make -C $(LIBFT) fclean 
-	@echo "[INFO] Checker Objects removed"
+	@echo "[INFO] Push_Swap Objects removed"
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "[INFO] [$(NAME)] removed"
+	@rm -f $(NAME_1)
+	@rm -f $(NAME_2)
+	@echo "[INFO] [$(NAME_1)] removed"
+	@echo "[INFO] [$(NAME_2)] removed"
 
 re: fclean all

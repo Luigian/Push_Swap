@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:03:41 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/21 20:56:13 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/22 10:52:56 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		ps_uniquearg(t_stack *a)
 
 void	ps_error(void)
 {
-		write(2, "ERROR\n", 6);
+		write(2, "Error\n", 6);
 		exit (-1);
 }
 
@@ -156,7 +156,8 @@ void	ps_storebuff(char buff[100][100])
 	}
 	buff[i][nb - 1] = '\0';
 }
-*/	
+*/
+
 int		ps_hash(char *s)
 {
 	int		hash;
