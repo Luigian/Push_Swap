@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:03:41 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/21 14:06:06 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/21 20:56:13 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int		ps_atoi(const char *str)
 	return ((int)result * sign);
 }
 
-
 void	ps_storestacks(t_stack *a, t_stack *b, int argc, char **argv)
 {
 	a->top = 0;
@@ -98,7 +97,52 @@ void	ps_storestacks(t_stack *a, t_stack *b, int argc, char **argv)
 			ps_error();
 	}
 }
-	
+
+int		ps_validop(char *s)
+{
+	if (ft_strlen(s) == 2)
+	{
+		if (s[0] == 's' && (s[1] == 'a' || s[1] == 'b' || s[1] == 's'))
+			return (1);
+		else if (s[0] == 'p' && (s[1] == 'a' || s[1] == 'b'))
+			return (1);
+		else if (s[0] == 'r' && (s[1] == 'a' || s[1] == 'b' || s[1] == 'r'))
+			return (1);
+	}
+	else if (s[0] == 'r' && s[1] == 'r' && (s[2] == 'a' || s[2] == 'b' ||\
+				s[2] == 'r'))
+		return (1);
+	return (0);
+}
+
+void	ps_storebuff(char buff[MAXCAP][MAXCAP])
+{
+	int		i;
+	int		j;
+	int		nb;
+
+	i = 0;
+	j = 0;
+	while ((nb = read(0, &buff[i][j], 1)) > 0)
+	{
+		if (buff[i][j] == '\n')
+		{
+			buff[i][j] = '\0';
+			if (j == 1 || j > 3)
+				ps_error();
+			if (j == 0)
+				break;
+			if (ps_validop(buff[i]) == 0)
+				ps_error();
+			++i;
+			j = 0;
+		}
+		else
+			++j;
+	}
+}
+
+/*	
 void	ps_storebuff(char buff[100][100])
 {
 	int		i;
@@ -112,7 +156,7 @@ void	ps_storebuff(char buff[100][100])
 	}
 	buff[i][nb - 1] = '\0';
 }
-	
+*/	
 int		ps_hash(char *s)
 {
 	int		hash;
@@ -128,7 +172,7 @@ int		ps_hash(char *s)
 	return (hash);
 }
 
-void	ps_putbuff(char buff[100][100])
+void	ps_putbuff(char buff[MAXCAP][MAXCAP])
 {
 	int		i;
 
@@ -155,7 +199,7 @@ void	ps_funfill(t_funpa f[])
 	f[342] = &rrr;
 }
 
-void	ps_runbuff(char buff[100][100], t_stack *a, t_stack *b)
+void	ps_runbuff(char buff[MAXCAP][MAXCAP], t_stack *a, t_stack *b)
 {
 	t_funpa		f[343];
 	int		i;
@@ -168,7 +212,7 @@ void	ps_runbuff(char buff[100][100], t_stack *a, t_stack *b)
 		++i;
 	}
 }
-	
+
 void	ps_check(t_stack *a, t_stack *b)
 {
 	int		prev;
@@ -193,21 +237,19 @@ int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-	char		buff[100][100];
+	char		buff[MAXCAP][MAXCAP];
 	
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_storebuff(buff);
-
 //	ps_putbuff(buff);
-	ps_putstack(&a);
-	ps_putstack(&b);
-
+//	ps_putstack(&a);
+//	ps_putstack(&b);
 	ps_runbuff(buff, &a, &b);
 	ps_check(&a, &b);
-
-	ps_putstack(&a);
-	ps_putstack(&b);
+//	ps_putstack(&a);
+//	ps_putstack(&b);
+//	system("leaks checker");
 	return (0);
 }
