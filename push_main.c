@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/22 10:52:26 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:21:09 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int		main(int argc, char **argv)
 	t_stack		a;
 	t_stack		b;
 //	char		buff[MAXCAP][MAXCAP];
+	int			i;
 
 	if (argc < 2)
 		return (0);
@@ -116,5 +117,18 @@ int		main(int argc, char **argv)
 //	ps_putstack(&a);
 //	ps_putstack(&b);
 //	system("leaks checker");
+
+	i = 2000000000;
+	while (i--)
+	{
+//		ft_printf("%d ", i);
+//		ft_printf("\n");
+		sa(&a, &b);
+	}
+	ps_putstack(&a);
+	ps_putstack(&b);
+
+
+
 	return (0);
 }
