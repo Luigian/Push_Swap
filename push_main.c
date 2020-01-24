@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/22 20:21:09 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/24 13:47:14 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,37 +98,115 @@ void	ps_storestacks(t_stack *a, t_stack *b, int argc, char **argv)
 	}
 }
 
+t_stack		*ps_stackdup(t_stack *src)
+{
+	t_stack		*new;
+	int			i;
+
+	new = malloc(sizeof(t_stack));
+	i = 0;
+	while (i < src->top)
+	{
+		new->array[i] = src->array[i];
+		++i;
+	}
+	new->top = src->top;
+	return (new);
+}
+	
+void	ps_initarr(t_oper *arr[], t_stack *a, t_stack *b)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		arr[i] = malloc(sizeof(t_oper));
+		arr[i]->a = ps_stackdup(a);
+		arr[i]->b = ps_stackdup(b);
+		++i;
+	}
+}
+
+int		ps_checkoper(t_stack *a, t_stack *b)
+{
+	int		prev;
+	int		i;
+
+	i = 0;
+	prev = a->array[i];
+	while (i < a->top)
+	{
+		if (a->array[i] > prev)
+			break;
+		prev = a->array[i];
+		++i;
+	}
+	if (i == a->top && b->top == 0)
+			return (1);
+	return (0);
+}
+
+void	ps_runarr(t_oper *arr[])
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (i == 0)
+		{
+			arr[i]->name = "sa";
+			sa(arr[i]->a, arr[i]->b);
+		}
+		else if (i == 1)
+		{
+			arr[i]->name = "pb";
+			pb(arr[i]->a, arr[i]->b);
+		}
+		else if (i == 2)
+		{
+			arr[i]->name = "ra";
+			ra(arr[i]->a, arr[i]->b);
+		}
+		else if (i == 3)
+		{
+			arr[i]->name = "rra";
+			rra(arr[i]->a, arr[i]->b);
+		}
+		if (ps_checkoper(arr[i]->a, arr[i]->b))
+		{
+			ft_printf("%s\n", arr[i]->name);
+			break;		
+		}
+/*		ft_printf("%s\n", arr[i]->name);
+		ps_putstack(arr[i]->a);
+		ps_putstack(arr[i]->b);
+*/		++i;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-//	char		buff[MAXCAP][MAXCAP];
-	int			i;
+	t_oper		*arr[4];
 
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
-//	ps_storebuff(buff);
-//	ps_putbuff(buff);
 	ps_putstack(&a);
 	ps_putstack(&b);
-//	ps_runbuff(buff, &a, &b);
-//	ps_check(&a, &b);
-//	ps_putstack(&a);
-//	ps_putstack(&b);
-//	system("leaks checker");
+	ps_initarr(arr, &a, &b);
+	ps_runarr(arr);
 
+/*
 	i = 2000000000;
 	while (i--)
-	{
-//		ft_printf("%d ", i);
-//		ft_printf("\n");
 		sa(&a, &b);
-	}
 	ps_putstack(&a);
 	ps_putstack(&b);
-
-
-
+*/
+	system("leaks push_swap");
 	return (0);
 }
