@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/24 13:11:28 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/24 18:14:38 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@
 
 typedef struct	s_stack
 {
-	int			array[MAXCAP];
-	int			top;
-}				t_stack;
+	int				array[MAXCAP];
+	int				top;
+}					t_stack;
 
-typedef struct	s_oper
+typedef struct		s_oper
 {
-	t_stack		*a;
-	t_stack		*b;
-	char		*name;
-}				t_oper;	
+	t_stack			*a;
+	t_stack			*b;
+	char			*name;
+	struct s_oper	*arr[8];
+	t_stack			*index;
+}					t_oper;	
 
 typedef void	(*t_funpa)(t_stack *a, t_stack *b);
 

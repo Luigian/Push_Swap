@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/24 13:47:14 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/24 20:14:29 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,6 @@ t_stack		*ps_stackdup(t_stack *src)
 	return (new);
 }
 	
-void	ps_initarr(t_oper *arr[], t_stack *a, t_stack *b)
-{
-	int		i;
-
-	i = 0;
-	while (i < 4)
-	{
-		arr[i] = malloc(sizeof(t_oper));
-		arr[i]->a = ps_stackdup(a);
-		arr[i]->b = ps_stackdup(b);
-		++i;
-	}
-}
 
 int		ps_checkoper(t_stack *a, t_stack *b)
 {
@@ -147,42 +134,95 @@ int		ps_checkoper(t_stack *a, t_stack *b)
 	return (0);
 }
 
-void	ps_runarr(t_oper *arr[])
+void	ps_runoper(t_oper *arr[], int i)
+{
+	if (i == 0)
+	{
+		arr[i]->name = "sa";
+		sa(arr[i]->a, arr[i]->b);
+	}
+	else if (i == 1)
+	{
+		arr[i]->name = "pb";
+		pb(arr[i]->a, arr[i]->b);
+	}
+	else if (i == 2)
+	{
+		arr[i]->name = "ra";
+		ra(arr[i]->a, arr[i]->b);
+	}
+	else if (i == 3)
+	{
+		arr[i]->name = "rra";
+		rra(arr[i]->a, arr[i]->b);
+	}
+}
+		
+void	ps_setindex(t_oper *arr[], int i)
+{
+	arr[i]->index = malloc(sizeof(t_stack));
+	arr[i]->index->top = 0;
+	arr[i]->index->array[arr[i]->index->top] = i;
+	arr[i]->index->top += 1;
+}
+			
+void	ps_printsol(t_oper *arr[], t_stack *index)
+{
+	int		i;
+
+	i = 0;
+	while (i < index->top)
+	{
+		ft_printf("%s\n", arr[index->array[i]]->name);
+		++i;
+	}
+}
+
+void	ps_runarr(t_oper *arr[], t_stack *a, t_stack *b)
 {
 	int		i;
 
 	i = 0;
 	while (i < 4)
 	{
-		if (i == 0)
-		{
-			arr[i]->name = "sa";
-			sa(arr[i]->a, arr[i]->b);
-		}
-		else if (i == 1)
-		{
-			arr[i]->name = "pb";
-			pb(arr[i]->a, arr[i]->b);
-		}
-		else if (i == 2)
-		{
-			arr[i]->name = "ra";
-			ra(arr[i]->a, arr[i]->b);
-		}
-		else if (i == 3)
-		{
-			arr[i]->name = "rra";
-			rra(arr[i]->a, arr[i]->b);
-		}
+		arr[i] = (t_oper *)malloc(sizeof(t_oper) * 1);
+		arr[i]->a = ps_stackdup(a);
+		arr[i]->b = ps_stackdup(b);
+		ps_setindex(arr, i);
+		ps_runoper(arr, i);
 		if (ps_checkoper(arr[i]->a, arr[i]->b))
 		{
-			ft_printf("%s\n", arr[i]->name);
-			break;		
+			ps_printsol(arr, arr[i]->index);
+			break;
 		}
-/*		ft_printf("%s\n", arr[i]->name);
-		ps_putstack(arr[i]->a);
-		ps_putstack(arr[i]->b);
-*/		++i;
+		++i;
+	}
+}
+
+void	ps_initarr(t_oper *arr[])
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		arr[i] = NULL;
+		++i;
+	}
+}
+
+void	ps_freearr(t_oper *arr[])
+{
+	int		i;
+
+	i = 0;
+	while (i < 4 && arr[i])
+	{	
+		free(arr[i]->a);
+		free(arr[i]->b);
+		free(arr[i]->index);
+		free(arr[i]);
+		++i;
 	}
 }
 
@@ -197,16 +237,9 @@ int		main(int argc, char **argv)
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_putstack(&a);
 	ps_putstack(&b);
-	ps_initarr(arr, &a, &b);
-	ps_runarr(arr);
-
-/*
-	i = 2000000000;
-	while (i--)
-		sa(&a, &b);
-	ps_putstack(&a);
-	ps_putstack(&b);
-*/
+	ps_initarr(arr);
+	ps_runarr(arr, &a, &b);
+	ps_freearr(arr);
 	system("leaks push_swap");
 	return (0);
 }
