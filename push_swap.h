@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/24 18:14:38 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/25 20:51:41 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ typedef struct	s_stack
 	int				top;
 }					t_stack;
 
-typedef struct		s_oper
+typedef struct		s_node
 {
+	char			*name;
 	t_stack			*a;
 	t_stack			*b;
-	char			*name;
-	struct s_oper	*arr[8];
-	t_stack			*index;
-}					t_oper;	
+	t_stack			*p;
+	struct s_node	*br[8];
+}					t_node;	
 
 typedef void	(*t_funpa)(t_stack *a, t_stack *b);
 
