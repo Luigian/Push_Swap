@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/25 20:51:41 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/26 12:23:02 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "ulibft/libft.h"
-# define MAXCAP 1000
+# define MAXCAP 100
 
 typedef struct	s_stack
 {
@@ -29,6 +29,8 @@ typedef struct		s_node
 	t_stack			*b;
 	t_stack			*p;
 	struct s_node	*br[8];
+	struct s_node	*hd;
+	int				*lv;
 }					t_node;	
 
 typedef void	(*t_funpa)(t_stack *a, t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/25 21:08:55 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:36:57 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void	ps_printsol(t_node *node, t_stack *p)
 	while (i < p->top)
 	{
 		ft_printf("%s\n", node->br[p->array[i]]->name);
+		node = node->br[p->array[i]];
 		++i;
 	}
 }
@@ -200,89 +201,104 @@ int		ps_initnode(t_node *node, int ix)
 {
 	int		i;
 	
-	node->br[ix] = malloc(sizeof(t_node));
-	node->br[ix]->a = ps_stackdup(node->a);
-	node->br[ix]->b = ps_stackdup(node->b);
-	ps_runoper(node->br[ix], ix);
-	node->br[ix]->p = ps_stackdup(node->p);
-	node->br[ix]->p->array[node->p->top] = ix;
-	node->br[ix]->p->top += 1;
-	i = 0;
-	while (i < 8)
-		node->br[ix]->br[i++] = NULL;
-	if (ps_checkoper(node->br[ix]->a, node->br[ix]->b))
+	if (node->br[ix] == NULL)
 	{
-		ps_printsol(node, node->br[ix]->p);
-		return (1);
+		node->br[ix] = malloc(sizeof(t_node));
+		node->br[ix]->a = ps_stackdup(node->a);
+		node->br[ix]->b = ps_stackdup(node->b);
+		ps_runoper(node->br[ix], ix);
+		node->br[ix]->p = ps_stackdup(node->p);
+		node->br[ix]->p->array[node->p->top] = ix;
+		node->br[ix]->p->top += 1;
+		node->br[ix]->hd = node->hd;
+		node->br[ix]->lv = node->lv;
+		i = 0;
+		while (i < 8)
+			node->br[ix]->br[i++] = NULL;
+		if (ps_checkoper(node->br[ix]->a, node->br[ix]->b))
+		{
+			ps_printsol(node->br[ix]->hd, node->br[ix]->p);
+			return (1);
+		}
 	}
 	i = 0;
-	while (i < 8 && node->br[ix]->p->top < 1)
+	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv)
 	{
-		ps_initnode(node->br[ix], i);
+		if (ps_initnode(node->br[ix], i))
+			return (1);
 		++i;
 	}
 	return (0);
 }	
 
-void	ps_inithead(t_node *head, t_stack *a, t_stack *b)
+int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 {
+	int		lv;
 	int		i;
-	
-	head = malloc(sizeof(t_node));
+
 	head->name = "head";
-	head->a = ps_stackdup(a);
-	head->b = ps_stackdup(b);
+	head->a = a;
+	head->b = b;
 	head->p = malloc(sizeof(t_stack));
 	head->p->top = 0;
+	head->hd = head;
+	lv = 0;
+	head->lv = &lv;
 	i = 0;
 	while (i < 8)
 	{
 		head->br[i] = NULL;
 		++i;
 	}
-	i = 0;
-	while (i < 8)
+	while (*head->lv < 10)
 	{
-		if (ps_initnode(head, i))
-			break ;
-		++i;
+		i = 0;
+		while (i < 8)
+		{
+			if (ps_initnode(head, i))
+				return (1);
+			++i;
+		}
+		*head->lv += 1;
 	}
+	return (0);
 }	
 
-void	ps_freenodes(t_node *head)
+void	ps_freenodes(t_node *node)
 {
 	int		i;
 
-//	(void)head;
 	i = 0;
-	while (i < 8 /*&& head->br[i]*/)
+	while (i < 8)
 	{	
-		free(head->br[0]->a);
-		free(head->br[0]->b);
-		free(head->br[0]->p);
-		free(head->br[0]);
+		if (node->br[i])
+			ps_freenodes(node->br[i]);
 		++i;
 	}
-	free(head->a);
-	free(head->b);
-	free(head->p);
-	free(head);
+	if (ft_strcmp(node->name, "head"))
+	{
+		free(node->a);
+		free(node->b);
+		free(node->p);
+		free(node);
+	}
+	else
+		free(node->p);
 }
 
 int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-	t_node		*head;
+	t_node		head;
 
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_putstack(&a);
 	ps_putstack(&b);
-	head = NULL;
-	ps_inithead(head, &a, &b);
-//	ps_freenodes(head);
+	ps_inithead(&head, &a, &b);
+	ps_freenodes(&head);
 	system("leaks push_swap");
 	return (0);
 }
