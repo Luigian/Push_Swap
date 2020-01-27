@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/26 13:36:57 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:54:01 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,10 +197,33 @@ void	ps_printsol(t_node *node, t_stack *p)
 	}
 }
 
+int		ps_notviable(t_node *node, int ix)
+{
+	if (ix == 0 && node->a->top < 2)
+		return (1);
+	if (ix == 1 && node->b->top < 2)
+		return (1);
+	if (ix == 2 && node->b->top < 1)
+		return (1);
+	if (ix == 3 && node->a->top < 1)
+		return (1);
+	if (ix == 4 && node->a->top < 3)
+		return (1);
+	if (ix == 5 && node->b->top < 3)
+		return (1);
+	if (ix == 6 && node->a->top < 3)
+		return (1);
+	if (ix == 7 && node->b->top < 3)
+		return (1);
+	return (0);
+}
+
 int		ps_initnode(t_node *node, int ix)
 {
 	int		i;
 	
+	if (ps_notviable(node, ix))
+		return (0);
 	if (node->br[ix] == NULL)
 	{
 		node->br[ix] = malloc(sizeof(t_node));
@@ -262,7 +285,23 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 		*head->lv += 1;
 	}
 	return (0);
-}	
+}
+
+void	ps_putnodes(t_node *node)
+{
+	int		i;
+
+	i = 0;
+	while (i < 8)
+	{	
+		if (node->br[i])
+			ps_putnodes(node->br[i]);
+		++i;
+	}
+	ft_printf("%s ", node->name);
+	if (ft_strcmp(node->name, "head") == 0)
+		ft_printf("\n");
+}
 
 void	ps_freenodes(t_node *node)
 {
@@ -298,6 +337,7 @@ int		main(int argc, char **argv)
 	ps_putstack(&a);
 	ps_putstack(&b);
 	ps_inithead(&head, &a, &b);
+	ps_putnodes(&head);
 	ps_freenodes(&head);
 	system("leaks push_swap");
 	return (0);
