@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/26 12:23:02 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/27 19:53:48 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct		s_node
 	struct s_node	*br[8];
 	struct s_node	*hd;
 	int				*lv;
+	int				*hko;
+	int				nko;
 }					t_node;	
 
 typedef void	(*t_funpa)(t_stack *a, t_stack *b);

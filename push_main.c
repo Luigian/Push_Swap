@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/27 14:54:01 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/27 21:00:39 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,25 @@ void	ps_runoper(t_node *node, int ix)
 		ps_runhelper(node, ix);
 }
 
-int		ps_checkoper(t_stack *a, t_stack *b)
+void	ps_checkpa(t_stack *a, t_stack *b, int *nko)
+{
+	int		prev;
+	int		i;
+	
+	if (b->array[b->top - 1] > a->array[a->top - 1])
+			*nko += 1;
+	i = 0;
+	prev = b->array[i];
+	while (i < b->top - 1)
+	{
+		if (b->array[i] < prev)
+			*nko += 1;
+		prev = b->array[i];
+		++i;
+	}
+}
+
+int		ps_checksort(t_stack *a, t_stack *b, int *nko)
 {
 	int		prev;
 	int		i;
@@ -175,12 +193,15 @@ int		ps_checkoper(t_stack *a, t_stack *b)
 	while (i < a->top)
 	{
 		if (a->array[i] > prev)
-			break;
+			*nko += 1;
 		prev = a->array[i];
 		++i;
 	}
-	if (i == a->top && b->top == 0)
-			return (1);
+//	if (i == a->top && b->top == 0)
+	if (*nko == 0 && b->top == 0)
+		return (1);
+	if (b->top > 0)
+		ps_checkpa(a, b, nko);
 	return (0);
 }
 
@@ -235,17 +256,22 @@ int		ps_initnode(t_node *node, int ix)
 		node->br[ix]->p->top += 1;
 		node->br[ix]->hd = node->hd;
 		node->br[ix]->lv = node->lv;
+		node->br[ix]->hko = node->hko;
+		node->br[ix]->nko = 0;
 		i = 0;
 		while (i < 8)
 			node->br[ix]->br[i++] = NULL;
-		if (ps_checkoper(node->br[ix]->a, node->br[ix]->b))
+		if (ps_checksort(node->br[ix]->a, node->br[ix]->b, &node->br[ix]->nko))
 		{
 			ps_printsol(node->br[ix]->hd, node->br[ix]->p);
 			return (1);
 		}
+		ft_printf("%s\t", node->br[ix]->name);
+		ft_printf("hko: %d, nko: %d\n", *node->br[ix]->hko, node->br[ix]->nko);
 	}
 	i = 0;
-	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv)
+	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv &&\
+			(node->br[ix]->nko - *node->br[ix]->hko) < /*2*/1)
 	{
 		if (ps_initnode(node->br[ix], i))
 			return (1);
@@ -267,6 +293,11 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 	head->hd = head;
 	lv = 0;
 	head->lv = &lv;
+	if (ps_checksort(head->a, head->b, &head->nko))
+		return (1);
+	head->hko = &head->nko;
+	ft_printf("%s\t", head->name);
+	ft_printf("hko: %d, nko: %d\n", *head->hko, head->nko);
 	i = 0;
 	while (i < 8)
 	{
@@ -334,10 +365,10 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
-	ps_putstack(&a);
-	ps_putstack(&b);
+//	ps_putstack(&a);
+//	ps_putstack(&b);
 	ps_inithead(&head, &a, &b);
-	ps_putnodes(&head);
+//	ps_putnodes(&head);
 	ps_freenodes(&head);
 	system("leaks push_swap");
 	return (0);
