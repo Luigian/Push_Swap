@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/27 21:00:39 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/29 14:02:56 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ int		ps_initnode(t_node *node, int ix)
 		node->br[ix]->hd = node->hd;
 		node->br[ix]->lv = node->lv;
 		node->br[ix]->hko = node->hko;
+		node->br[ix]->pko = node->nko;
 		node->br[ix]->nko = 0;
 		i = 0;
 		while (i < 8)
@@ -267,11 +268,12 @@ int		ps_initnode(t_node *node, int ix)
 			return (1);
 		}
 		ft_printf("%s\t", node->br[ix]->name);
-		ft_printf("hko: %d, nko: %d\n", *node->br[ix]->hko, node->br[ix]->nko);
+		ft_printf("hko: %d, pko: %d, nko: %d\n", *node->br[ix]->hko,\
+			node->br[ix]->pko, node->br[ix]->nko);
 	}
 	i = 0;
 	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv &&\
-			(node->br[ix]->nko - *node->br[ix]->hko) < /*2*/1)
+			(node->br[ix]->nko <= node->br[ix]->pko))
 	{
 		if (ps_initnode(node->br[ix], i))
 			return (1);
@@ -295,9 +297,10 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 	head->lv = &lv;
 	if (ps_checksort(head->a, head->b, &head->nko))
 		return (1);
+	head->pko = head->nko;
 	head->hko = &head->nko;
 	ft_printf("%s\t", head->name);
-	ft_printf("hko: %d, nko: %d\n", *head->hko, head->nko);
+	ft_printf("hko: %d, pko: %d, nko: %d\n", *head->hko, head->pko, head->nko);
 	i = 0;
 	while (i < 8)
 	{

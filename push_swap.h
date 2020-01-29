@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/27 19:53:48 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:29:57 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_node
 	struct s_node	*hd;
 	int				*lv;
 	int				*hko;
+	int				pko;
 	int				nko;
 }					t_node;	
 
