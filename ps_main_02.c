@@ -6,97 +6,11 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/29 17:16:41 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/29 20:01:10 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ps_putstack(t_stack *s)
-{
-	int		i;
-
-	i = 0;
-	while (i < s->top)
-		ft_printf("[%d]", s->array[i++]);
-	ft_printf("\t%d\n", s->top);
-}
-
-int		ps_validarg(char *s)
-{
-	int		i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (ft_isdigit(s[i]) || (i == 0 && (s[i] == '-' || s[i] == '+')))
-			++i;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int		ps_uniquearg(t_stack *a)
-{
-	int		i;
-
-	i = 0;
-	while (i < a->top - 1)
-	{
-		if (a->array[i] == a->array[a->top - 1])
-			return (0);
-		++i;
-	}
-	return (1);
-}
-
-void	ps_error(void)
-{
-		write(2, "Error\n", 6);
-		exit (-1);
-}
-
-int		ps_atoi(const char *str)
-{
-	int		sign;
-	long	result;
-
-	if (ft_strcmp(str,"-2147483648") == 0)
-		return (-2147483648);
-	sign = 1;
-	result = 0;
-	while (ft_isspecial(*str))
-		++str;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign = -1;
-		++str;
-	}
-	while (ft_isdigit(*str))
-	{
-		result = (result * 10) + (*str - 48);
-		++str;
-	}
-	if (result > 2147483647 || result < -2147483648)
-		ps_error();
-	return ((int)result * sign);
-}
-
-void	ps_storestacks(t_stack *a, t_stack *b, int argc, char **argv)
-{
-	a->top = 0;
-	b->top = 0;
-	while (argc--)
-	{
-		if (ps_validarg(argv[argc]) == 0)
-			ps_error();
-		a->array[a->top++] = ps_atoi(argv[argc]);
-		if (ps_uniquearg(a) == 0)
-			ps_error();
-	}
-}
 
 t_stack		*ps_stackdup(t_stack *src)
 {
@@ -113,7 +27,6 @@ t_stack		*ps_stackdup(t_stack *src)
 	new->top = src->top;
 	return (new);
 }
-
 
 void	ps_runhelper(t_node *node, int ix)
 {
@@ -169,9 +82,9 @@ void	ps_checkpa(t_stack *a, t_stack *b, int *nko)
 {
 	int		prev;
 	int		i;
-	
+
 	if (b->array[b->top - 1] > a->array[a->top - 1])
-			*nko += 1;
+		*nko += 1;
 	i = 0;
 	prev = b->array[i];
 	while (i < b->top - 1)
@@ -241,34 +154,41 @@ int		ps_notviable(t_node *node, int ix)
 int		ps_progress(t_node *node)
 {
 	int		flex;
-	
+
 	flex = 2;
 	if ((*node->lv - 1) % flex == 0)
 		if ((*node->hko - ((*node->lv - 1) / flex)) < node->nko)
 			return (0);
-	return (1);
+	if (node->p->top <= *node->lv && (node->nko <= node->pko))
+		return (1);
+	return (0);
+}
+
+void	ps_nodeassign(t_node *node, int ix)
+{
+	node->br[ix] = malloc(sizeof(t_node));
+	node->br[ix]->a = ps_stackdup(node->a);
+	node->br[ix]->b = ps_stackdup(node->b);
+	ps_runoper(node->br[ix], ix);
+	node->br[ix]->p = ps_stackdup(node->p);
+	node->br[ix]->p->array[node->p->top] = ix;
+	node->br[ix]->p->top += 1;
+	node->br[ix]->hd = node->hd;
+	node->br[ix]->lv = node->lv;
+	node->br[ix]->hko = node->hko;
+	node->br[ix]->pko = node->nko;
+	node->br[ix]->nko = 0;
 }
 
 int		ps_initnode(t_node *node, int ix)
 {
 	int		i;
-	
+
 	if (ps_notviable(node, ix))
 		return (0);
 	if (node->br[ix] == NULL)
 	{
-		node->br[ix] = malloc(sizeof(t_node));
-		node->br[ix]->a = ps_stackdup(node->a);
-		node->br[ix]->b = ps_stackdup(node->b);
-		ps_runoper(node->br[ix], ix);
-		node->br[ix]->p = ps_stackdup(node->p);
-		node->br[ix]->p->array[node->p->top] = ix;
-		node->br[ix]->p->top += 1;
-		node->br[ix]->hd = node->hd;
-		node->br[ix]->lv = node->lv;
-		node->br[ix]->hko = node->hko;
-		node->br[ix]->pko = node->nko;
-		node->br[ix]->nko = 0;
+		ps_nodeassign(node, ix);
 		i = 0;
 		while (i < 8)
 			node->br[ix]->br[i++] = NULL;
@@ -280,34 +200,39 @@ int		ps_initnode(t_node *node, int ix)
 		}
 	}
 	i = 0;
-	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv &&\
-			(node->br[ix]->nko <= node->br[ix]->pko) &&\
-			ps_progress(node->br[ix]))
+	while (i < 8 && ps_progress(node->br[ix]))
 	{
 		if (ps_initnode(node->br[ix], i))
 			return (1);
 		++i;
 	}
 	return (0);
-}	
+}
 
-int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
+int		ps_headassign(t_node *head, t_stack *a, t_stack *b, int *lv)
 {
-	int		lv;
-	int		i;
-
 	head->name = "head";
 	head->a = a;
 	head->b = b;
 	head->p = malloc(sizeof(t_stack));
 	head->p->top = 0;
 	head->hd = head;
-	lv = 0;
-	head->lv = &lv;
+	head->lv = lv;
 	if (ps_checksort(head->a, head->b, &head->nko))
 		return (1);
 	head->pko = head->nko;
 	head->hko = &head->nko;
+	return (0);
+}
+
+int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
+{
+	int		lv;
+	int		i;
+
+	lv = 0;
+	if (ps_headassign(head, a, b, &lv))
+		return (1);
 	i = 0;
 	while (i < 8)
 	{
@@ -334,7 +259,7 @@ void	ps_putnodes(t_node *node)
 
 	i = 0;
 	while (i < 8)
-	{	
+	{
 		if (node->br[i])
 			ps_putnodes(node->br[i]);
 		++i;
@@ -350,7 +275,7 @@ void	ps_freenodes(t_node *node)
 
 	i = 0;
 	while (i < 8)
-	{	
+	{
 		if (node->br[i])
 			ps_freenodes(node->br[i]);
 		++i;

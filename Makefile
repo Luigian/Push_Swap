@@ -6,7 +6,7 @@
 #    By: lusanche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 19:27:37 by lusanche          #+#    #+#              #
-#    Updated: 2020/01/22 10:29:13 by lusanche         ###   ########.fr        #
+#    Updated: 2020/01/29 20:55:17 by lusanche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,14 @@ NAME_1 = checker
 NAME_2 = push_swap
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SRC_1 = checker_main.c operations.c
-SRC_2 = push_main.c operations.c
+SRC_1 = ps_main_01.c ps_buff.c ps_oper_01.c ps_oper_02.c ps_oper_03.c\
+		ps_tools_01.c ps_tools_02.c
+SRC_2 = ps_main_02.c ps_oper_01.c ps_oper_02.c ps_oper_03.c ps_tools_01.c\
+		ps_tools_02.c
 OBJ_1 = $(SRC_1:.c=.o)
 OBJ_2 = $(SRC_2:.c=.o)
-LIBFT = ulibft/
-LB_H = ulibft/libft.h
+LIBFT = libft/
+LB_H = libft/libft.h
 
 $(NAME_2):
 	@make -C $(LIBFT) fclean && make -C $(LIBFT)
