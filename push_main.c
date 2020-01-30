@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/29 14:02:56 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:16:41 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ int		ps_checksort(t_stack *a, t_stack *b, int *nko)
 		prev = a->array[i];
 		++i;
 	}
-//	if (i == a->top && b->top == 0)
 	if (*nko == 0 && b->top == 0)
 		return (1);
 	if (b->top > 0)
@@ -239,6 +238,17 @@ int		ps_notviable(t_node *node, int ix)
 	return (0);
 }
 
+int		ps_progress(t_node *node)
+{
+	int		flex;
+	
+	flex = 2;
+	if ((*node->lv - 1) % flex == 0)
+		if ((*node->hko - ((*node->lv - 1) / flex)) < node->nko)
+			return (0);
+	return (1);
+}
+
 int		ps_initnode(t_node *node, int ix)
 {
 	int		i;
@@ -265,15 +275,14 @@ int		ps_initnode(t_node *node, int ix)
 		if (ps_checksort(node->br[ix]->a, node->br[ix]->b, &node->br[ix]->nko))
 		{
 			ps_printsol(node->br[ix]->hd, node->br[ix]->p);
+			ps_putstack(node->br[ix]->a);
 			return (1);
 		}
-		ft_printf("%s\t", node->br[ix]->name);
-		ft_printf("hko: %d, pko: %d, nko: %d\n", *node->br[ix]->hko,\
-			node->br[ix]->pko, node->br[ix]->nko);
 	}
 	i = 0;
 	while (i < 8 && node->br[ix]->p->top <= *node->br[ix]->lv &&\
-			(node->br[ix]->nko <= node->br[ix]->pko))
+			(node->br[ix]->nko <= node->br[ix]->pko) &&\
+			ps_progress(node->br[ix]))
 	{
 		if (ps_initnode(node->br[ix], i))
 			return (1);
@@ -299,15 +308,13 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 		return (1);
 	head->pko = head->nko;
 	head->hko = &head->nko;
-	ft_printf("%s\t", head->name);
-	ft_printf("hko: %d, pko: %d, nko: %d\n", *head->hko, head->pko, head->nko);
 	i = 0;
 	while (i < 8)
 	{
 		head->br[i] = NULL;
 		++i;
 	}
-	while (*head->lv < 10)
+	while (*head->lv < 20)
 	{
 		i = 0;
 		while (i < 8)
@@ -368,10 +375,8 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
-//	ps_putstack(&a);
-//	ps_putstack(&b);
+	ps_putstack(&a);
 	ps_inithead(&head, &a, &b);
-//	ps_putnodes(&head);
 	ps_freenodes(&head);
 	system("leaks push_swap");
 	return (0);
