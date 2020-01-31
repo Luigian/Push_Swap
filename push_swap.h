@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:43:53 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:03:21 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,11 @@ void				ps_runoper(t_node *node, int ix);
 void				ps_putnodes(t_node *node);
 void				ps_printsol(t_node *node, t_stack *p);
 void				ps_freenodes(t_node *node);
+
+/*
+** ps_swap_03.c
+*/
+
+void				ps_foo(t_stack *a, t_stack *b);
 
 #endif

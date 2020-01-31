@@ -6,7 +6,7 @@
 #    By: lusanche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 19:27:37 by lusanche          #+#    #+#              #
-#    Updated: 2020/01/30 20:11:20 by lusanche         ###   ########.fr        #
+#    Updated: 2020/01/31 11:06:28 by lusanche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 SRC_1 = ps_main_checker.c ps_checker_01.c ps_oper_01.c ps_oper_02.c ps_oper_03.c\
 		ps_tools_01.c ps_tools_02.c
-SRC_2 = ps_main_swap.c ps_swap_01.c ps_swap_02.c ps_oper_01.c ps_oper_02.c\
-	   	ps_oper_03.c ps_tools_01.c ps_tools_02.c
+SRC_2 = ps_main_swap.c ps_swap_01.c ps_swap_02.c ps_swap_03.c ps_oper_01.c\
+		ps_oper_02.c ps_oper_03.c ps_tools_01.c ps_tools_02.c
 OBJ_1 = $(SRC_1:.c=.o)
 OBJ_2 = $(SRC_2:.c=.o)
 LIBFT = libft/

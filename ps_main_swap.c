@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:47:52 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:03:51 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,13 @@ int		main(int argc, char **argv)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_putstack(&a);
-	ps_inithead(&head, &a, &b);
-	ps_freenodes(&head);
+	if (a.top <= 6)
+	{
+		ps_inithead(&head, &a, &b);
+		ps_freenodes(&head);
+	}
+	else
+		ps_foo(&a, &b);
 	system("leaks push_swap");
 	return (0);
 }
