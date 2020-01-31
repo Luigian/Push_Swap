@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/29 21:22:20 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/30 20:43:53 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,18 @@ int					ps_uniquearg(t_stack *a);
 ** ps_tools_02.c
 */
 
-void				ps_error(void);
+void				ps_error(int code);
 int					ps_atoi(const char *str);
 void				ps_storestacks(t_stack *a, t_stack *b, int ac, char **av);
 
 /*
-** ps_buff.c
+** ps_main_checker.c
+*/
+
+void				ps_check(t_stack *a, t_stack *b);
+
+/*
+** ps_checker_01.c
 */
 
 int					ps_validop(char *s);
@@ -89,5 +95,34 @@ void				ps_storebuff(char buff[MAX][MAX]);
 int					ps_hash(char *s);
 void				ps_runbuff(char buff[MAX][MAX], t_stack *a, t_stack *b);
 void				ps_putbuff(char buff[MAX][MAX]);
+
+/*
+** ps_main_swap.c
+*/
+
+void				ps_checkpa(t_stack *a, t_stack *b, int *nko);
+int					ps_checksort(t_stack *a, t_stack *b, int *nko);
+int					ps_hdassign(t_node *head, t_stack *a, t_stack *b, int *lv);
+int					ps_inithead(t_node *head, t_stack *a, t_stack *b);
+
+/*
+** ps_swap_01.c
+*/
+
+int					ps_notviable(t_node *node, int ix);
+t_stack				*ps_stackdup(t_stack *src);
+void				ps_nodeassign(t_node *node, int ix);
+int					ps_progress(t_node *node);
+int					ps_initnode(t_node *node, int ix);
+
+/*
+** ps_swap_02.c
+*/
+
+void				ps_runhelper(t_node *node, int ix);
+void				ps_runoper(t_node *node, int ix);
+void				ps_putnodes(t_node *node);
+void				ps_printsol(t_node *node, t_stack *p);
+void				ps_freenodes(t_node *node);
 
 #endif

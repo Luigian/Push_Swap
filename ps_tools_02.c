@@ -6,16 +6,24 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 19:43:59 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/29 20:13:16 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/01/30 20:34:32 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_error(void)
+void	ps_error(int code)
 {
-	write(2, "Error\n", 6);
-	exit(-1);
+	if (code == -2)
+	{
+		write(2, "Malloc Error\n", 13);
+		exit(-2);
+	}
+	else if (code == -1)
+	{
+		write(2, "Error\n", 6);
+		exit(-1);
+	}
 }
 
 int		ps_atoi(const char *str)
@@ -41,7 +49,7 @@ int		ps_atoi(const char *str)
 		++str;
 	}
 	if (result > 2147483647 || result < -2147483648)
-		ps_error();
+		ps_error(-1);
 	return ((int)result * sign);
 }
 
@@ -52,9 +60,9 @@ void	ps_storestacks(t_stack *a, t_stack *b, int ac, char **av)
 	while (ac--)
 	{
 		if (ps_validarg(av[ac]) == 0)
-			ps_error();
+			ps_error(-1);
 		a->array[a->top++] = ps_atoi(av[ac]);
 		if (ps_uniquearg(a) == 0)
-			ps_error();
+			ps_error(-1);
 	}
 }
