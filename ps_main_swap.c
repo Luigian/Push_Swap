@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/31 17:33:01 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:18:22 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,17 @@ int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-//	t_node		head;
+	t_node		head;
 
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
-	ps_putstack(&a);
-/*	if (a.top <= 6)
+	if (a.top <= 6)
 	{
 		ps_inithead(&head, &a, &b);
 		ps_freenodes(&head);
 	}
 	else
-*/		ps_foo(&a, &b);
-	system("leaks push_swap");
+		ps_selection(&a, &b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:03:41 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:06:27 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:26:10 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int		main(int argc, char **argv)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
 	ps_storebuff(buff);
-	ps_putstack(&a);
 	ps_runbuff(buff, &a, &b);
 	ps_check(&a, &b);
-	ps_putstack(&a);
-	system("leaks checker");
 	return (0);
 }

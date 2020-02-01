@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/31 11:03:21 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:15:02 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,10 @@ void				ps_freenodes(t_node *node);
 ** ps_swap_03.c
 */
 
-void				ps_foo(t_stack *a, t_stack *b);
+int					ps_checksort02(t_stack *a, t_stack *b, int *nko);
+void				ps_doop(char *s, t_stack *a, t_stack *b);
+int					ps_findsmall(t_stack *a);
+void				ps_movesmall(int i, t_stack *a, t_stack *b);
+void				ps_selection(t_stack *a, t_stack *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:39:31 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:39:23 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:20:37 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int			ps_initnode(t_node *node, int ix)
 		if (ps_checksort(node->br[ix]->a, node->br[ix]->b, &node->br[ix]->nko))
 		{
 			ps_printsol(node->br[ix]->hd, node->br[ix]->p);
-			ps_putstack(node->br[ix]->a);
 			return (1);
 		}
 	}
