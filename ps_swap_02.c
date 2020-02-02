@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:44:25 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:01:17 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 21:41:03 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	ps_printsol(t_node *node, t_stack *p)
 		node = node->br[p->array[i]];
 		++i;
 	}
+	ft_printf("\n");
 }
 
 void	ps_freenodes(t_node *node)

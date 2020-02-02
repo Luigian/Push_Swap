@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 19:43:59 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:34:32 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 21:45:27 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,46 @@ int		ps_atoi(const char *str)
 	return ((int)result * sign);
 }
 
+int		ps_splitlen(char **m)
+{
+	int		i;
+
+	i = 0;
+	while (m[i])
+		++i;
+	return (i);
+}
+
 void	ps_storestacks(t_stack *a, t_stack *b, int ac, char **av)
 {
+	int		mult;
+	char	**m;
+	int		i;
+
+	mult = 0;
 	a->top = 0;
 	b->top = 0;
 	while (ac--)
 	{
-		if (ps_validarg(av[ac]) == 0)
+		if (ps_validarg(av[ac], &mult) == 0)
 			ps_error(-1);
-		a->array[a->top++] = ps_atoi(av[ac]);
-		if (ps_uniquearg(a) == 0)
-			ps_error(-1);
+		if (mult)
+		{
+			m = ft_strsplit(av[ac], ' ');
+			i = ps_splitlen(m);
+			while (i--)
+			{
+				a->array[a->top++] = ps_atoi(m[i]);
+				if (ps_uniquearg(a) == 0)
+					ps_error(-1);
+			}
+			mult = 0;
+		}
+		else
+		{
+			a->array[a->top++] = ps_atoi(av[ac]);
+			if (ps_uniquearg(a) == 0)
+				ps_error(-1);
+		}
 	}
 }

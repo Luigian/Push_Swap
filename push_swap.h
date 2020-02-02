@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/01 10:15:02 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/01 20:50:55 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void				rrr(t_stack *a, t_stack *b);
 */
 
 void				ps_putstack(t_stack *a);
-int					ps_validarg(char *s);
+int					ps_validarg(char *s, int *mult);
 int					ps_uniquearg(t_stack *a);
 
 /*
