@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 19:43:59 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/01 21:45:27 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:48:23 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,24 @@ int		ps_splitlen(char **m)
 	return (i);
 }
 
+void	ps_storehelper(char *s, t_stack *a)
+{
+	char	**m;
+	int		i;
+
+	m = ft_strsplit(s, ' ');
+	i = ps_splitlen(m);
+	while (i--)
+	{
+		a->array[a->top++] = ps_atoi(m[i]);
+		if (ps_uniquearg(a) == 0)
+			ps_error(-1);
+	}
+}
+
 void	ps_storestacks(t_stack *a, t_stack *b, int ac, char **av)
 {
 	int		mult;
-	char	**m;
-	int		i;
 
 	mult = 0;
 	a->top = 0;
@@ -78,14 +91,7 @@ void	ps_storestacks(t_stack *a, t_stack *b, int ac, char **av)
 			ps_error(-1);
 		if (mult)
 		{
-			m = ft_strsplit(av[ac], ' ');
-			i = ps_splitlen(m);
-			while (i--)
-			{
-				a->array[a->top++] = ps_atoi(m[i]);
-				if (ps_uniquearg(a) == 0)
-					ps_error(-1);
-			}
+			ps_storehelper(av[ac], a);
 			mult = 0;
 		}
 		else

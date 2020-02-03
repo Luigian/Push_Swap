@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/01 20:50:55 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:47:22 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int					ps_uniquearg(t_stack *a);
 
 void				ps_error(int code);
 int					ps_atoi(const char *str);
+int					ps_splitlen(char **m);
+void				ps_storehelper(char *s, t_stack *a);
 void				ps_storestacks(t_stack *a, t_stack *b, int ac, char **av);
 
 /*
@@ -91,9 +93,9 @@ void				ps_check(t_stack *a, t_stack *b);
 */
 
 int					ps_validop(char *s);
-void				ps_storebuff(char buff[MAX][MAX]);
+int					ps_storebuff(char buffer[MAX]);
 int					ps_hash(char *s);
-void				ps_runbuff(char buff[MAX][MAX], t_stack *a, t_stack *b);
+void				ps_runbuff(char buffer[MAX], t_stack *a, t_stack *b);
 void				ps_putbuff(char buff[MAX][MAX]);
 
 /*

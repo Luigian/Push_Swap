@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 20:48:12 by lusanche          #+#    #+#             */
-/*   Updated: 2020/01/30 20:45:25 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:30:15 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,32 @@ int		ps_validop(char *s)
 	return (0);
 }
 
-void	ps_storebuff(char buff[MAX][MAX])
+int		ps_storebuff(char buffer[MAX])
 {
-	int		i;
 	int		j;
 	int		nb;
 
-	i = 0;
 	j = 0;
-	while ((nb = read(0, &buff[i][j], 1)) > 0)
+	while ((nb = read(0, &buffer[j], 1)) > 0)
 	{
-		if (buff[i][j] == '\n')
+		if (buffer[j] == '\n')
 		{
-			buff[i][j] = '\0';
-			if (j == 1 || j > 3)
+			buffer[j] = '\0';
+			if (j < 2 || j > 3)
 				ps_error(-1);
-			if (j == 0)
-				break ;
-			if (ps_validop(buff[i]) == 0)
+			if (ps_validop(buffer) == 0)
 				ps_error(-1);
-			++i;
-			j = 0;
+			return (1);
 		}
 		else
 			++j;
 	}
+	if (j)
+	{
+		ft_printf("\n");
+		ps_error(-1);
+	}
+	return (0);
 }
 
 int		ps_hash(char *s)
@@ -71,7 +72,7 @@ int		ps_hash(char *s)
 	return (hash);
 }
 
-void	ps_runbuff(char buff[MAX][MAX], t_stack *a, t_stack *b)
+void	ps_runbuff(char buffer[MAX], t_stack *a, t_stack *b)
 {
 	t_funpa		f[343];
 	int			i;
@@ -88,11 +89,7 @@ void	ps_runbuff(char buff[MAX][MAX], t_stack *a, t_stack *b)
 	f[326] = &rrb;
 	f[342] = &rrr;
 	i = 0;
-	while (buff[i][0])
-	{
-		f[ps_hash(buff[i])](a, b);
-		++i;
-	}
+	f[ps_hash(buffer)](a, b);
 }
 
 void	ps_putbuff(char buff[MAX][MAX])
