@@ -6,12 +6,82 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 11:04:19 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/01 10:16:28 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/03 21:07:08 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int		ps_findsmall_2(t_stack *a, int range)
+{
+	int		i;
+	int		small;
+	int		ret;
+
+	i = 0;
+	small = a->array[i];
+	ret = 0;
+	while (i < a->top && i < range)
+	{
+		if (a->array[i] < small)
+		{
+			ret = i;
+			small = a->array[i];
+		}
+		++i;
+	}
+	i = a->top - 1;
+	while (i >= 0 && i > a->top - range)
+	{
+		if (a->array[i] < small)
+		{
+			ret = i;
+			small = a->array[i];
+		}
+		--i;
+	}
+	return (ret);
+}
+
+void	ps_selection(t_stack *a, t_stack *b)
+{
+	
+	int		i;
+	int		range;
+	
+	(void)b;
+	range = 5;
+		
+	i = ps_findsmall_2(a, range);
+	
+/*	if (a->top
+	ps_movesmall(i, a, b);
+*/	
+	ft_printf("%d\n", i);
+}	
+	
+	
+/*	
+	
+	
+	
+	int		ko;
+
+	ko = 0;
+	i = 0;
+	while (ps_checksort02(a, b, &ko) == 0)
+	{
+		if (ko == 0)
+			ps_doop("pa", a, b);
+		else if ((i = ps_findsmall(a)) != a->top - 1)
+			ps_movesmall(i, a, b);
+		else
+			ps_doop("pb", a, b);
+		ko = 0;
+	}
+}
+*/
+/*
 int		ps_checksort02(t_stack *a, t_stack *b, int *nko)
 {
 	int		prev;
@@ -121,3 +191,4 @@ void	ps_selection(t_stack *a, t_stack *b)
 		ko = 0;
 	}
 }
+*/
