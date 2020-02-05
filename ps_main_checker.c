@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:03:41 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/03 18:52:19 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/05 14:13:23 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	ps_storestacks(&a, &b, argc - 1, argv + 1);
-	ps_putstack(&a);
-	ps_putstack(&b);
 	ret = 1;
 	mov = 0;
 	while (ret)
@@ -53,9 +51,6 @@ int		main(int argc, char **argv)
 		if (ret)
 		{
 			ps_runbuff(buffer, &a, &b);
-			ft_printf("mov: %d\n", ++mov);
-			ps_putstack(&a);
-			ps_putstack(&b);
 		}
 	}
 	ps_check(&a, &b);
