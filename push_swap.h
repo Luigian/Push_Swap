@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/03 11:47:22 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:34:41 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# define MAX 100
+# define MAX 10000
 
 typedef struct		s_stack
 {
@@ -131,10 +131,30 @@ void				ps_freenodes(t_node *node);
 ** ps_swap_03.c
 */
 
-int					ps_checksort02(t_stack *a, t_stack *b, int *nko);
-void				ps_doop(char *s, t_stack *a, t_stack *b);
-int					ps_findsmall(t_stack *a);
-void				ps_movesmall(int i, t_stack *a, t_stack *b);
+void				ps_fillsort(int *sort, t_stack *a);
+void				ps_prepareb(t_stack *a, t_stack *b, int *ops);
+void				ps_doop(char *s, t_stack *a, t_stack *b, int *ops);
+int					ps_findbigger(t_stack *b);
 void				ps_selection(t_stack *a, t_stack *b);
+
+/*
+** ps_swap_04.c
+*/
+
+int					ps_ingroup(int n, int *sort, int group);
+int					ps_findhelper(t_stack *a, int *sort, int group);
+int					ps_findcloser(t_stack *a, int *sort, int group);
+void				ps_moveatop(int i, t_stack *a, t_stack *b, int *ops);
+void				ps_movebtop(int i, t_stack *a, t_stack *b, int *ops);
+
+/*
+** ps_swap_05.c
+*/
+
+void				ps_dora(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_dorb(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_dorra(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_dorrb(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_doophelper(char *s, t_stack *a, t_stack *b, int *ops);
 
 #endif
