@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 20:48:12 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/03 11:30:15 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 12:17:35 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int		ps_validop(char *s)
 	return (0);
 }
 
-int		ps_storebuff(char buffer[MAX])
+int		ps_storebuff(char buffer[MAX], int fd)
 {
 	int		j;
 	int		nb;
 
 	j = 0;
-	while ((nb = read(0, &buffer[j], 1)) > 0)
+	while ((nb = read(fd, &buffer[j], 1)) > 0)
 	{
 		if (buffer[j] == '\n')
 		{
@@ -51,7 +51,8 @@ int		ps_storebuff(char buffer[MAX])
 	}
 	if (j)
 	{
-		ft_printf("\n");
+		if (fd == 0)
+			ft_printf("\n");
 		ps_error(-1);
 	}
 	return (0);

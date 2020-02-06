@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/05 19:34:41 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:01:29 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include <fcntl.h>
 # define MAX 10000
 
 typedef struct		s_stack
@@ -21,6 +22,14 @@ typedef struct		s_stack
 	int				array[MAX];
 	int				top;
 }					t_stack;
+
+typedef struct		s_checker
+{
+	int				v;
+	int				fd;
+	int				ac;
+	char			**av;
+}					t_checker;
 
 typedef struct		s_node
 {
@@ -68,7 +77,8 @@ void				rrr(t_stack *a, t_stack *b);
 ** ps_tools_01.c
 */
 
-void				ps_putstack(t_stack *a);
+void				ps_checkpa(t_stack *a, t_stack *b, int *nko);
+int					ps_checksort(t_stack *a, t_stack *b, int *nko);
 int					ps_validarg(char *s, int *mult);
 int					ps_uniquearg(t_stack *a);
 
@@ -86,14 +96,17 @@ void				ps_storestacks(t_stack *a, t_stack *b, int ac, char **av);
 ** ps_main_checker.c
 */
 
+void				ps_putstacks(t_stack *a, t_stack *b);
+void				ps_putstatus(t_stack *a, t_stack *b, int v);
 void				ps_check(t_stack *a, t_stack *b);
+void				ps_initchecker(t_checker *c, t_stack *a, t_stack *b);
 
 /*
 ** ps_checker_01.c
 */
 
 int					ps_validop(char *s);
-int					ps_storebuff(char buffer[MAX]);
+int					ps_storebuff(char buffer[MAX], int fd);
 int					ps_hash(char *s);
 void				ps_runbuff(char buffer[MAX], t_stack *a, t_stack *b);
 void				ps_putbuff(char buff[MAX][MAX]);
@@ -102,8 +115,6 @@ void				ps_putbuff(char buff[MAX][MAX]);
 ** ps_main_swap.c
 */
 
-void				ps_checkpa(t_stack *a, t_stack *b, int *nko);
-int					ps_checksort(t_stack *a, t_stack *b, int *nko);
 int					ps_hdassign(t_node *head, t_stack *a, t_stack *b, int *lv);
 int					ps_inithead(t_node *head, t_stack *a, t_stack *b);
 

@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 19:43:59 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/05 18:29:48 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 12:09:57 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 void	ps_error(int code)
 {
-	if (code == -2)
+	if (code == -1)
+	{
+		write(2, "Error\n", 6);
+		exit(-1);
+	}
+	else if (code == -2)
 	{
 		write(2, "Malloc Error\n", 13);
 		exit(-2);
 	}
-	else if (code == -1)
+	else if (code == -3)
 	{
-		write(2, "Error\n", 6);
+		write(2, "Invalid File\n", 13);
 		exit(-1);
 	}
 }
