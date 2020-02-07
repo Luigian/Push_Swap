@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:44:25 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/03 11:25:28 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:39:34 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,22 @@ void	ps_putnodes(t_node *node)
 		ft_printf("\n");
 }
 
-void	ps_printsol(t_node *node, t_stack *p)
+void	ps_printsol(t_node *node, t_stack *p, int fd)
 {
 	int		i;
 
 	i = 0;
 	while (i < p->top)
 	{
-		ft_printf("%s\n", node->br[p->array[i]]->name);
+		if (fd)
+			ft_putendl_fd(node->br[p->array[i]]->name, fd);
+		else
+			ft_printf("%s\n", node->br[p->array[i]]->name);
 		node = node->br[p->array[i]];
 		++i;
 	}
+	if (fd)
+		ft_printf("Done!\n");
 }
 
 void	ps_freenodes(t_node *node)

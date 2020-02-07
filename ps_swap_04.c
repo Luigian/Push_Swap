@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:23:15 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/05 19:27:19 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:58:43 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,44 +69,44 @@ int		ps_findcloser(t_stack *a, int *sort, int group)
 	return (right);
 }
 
-void	ps_moveatop(int i, t_stack *a, t_stack *b, int *ops)
+void	ps_moveatop(t_doop *d, t_stack *a, t_stack *b)
 {
-	if (i == a->top - 2)
-		ps_doop("sa", a, b, ops);
-	else if (i >= a->top / 2)
+	if (d->i == a->top - 2)
+		ps_doop("sa", a, b, d);
+	else if (d->i >= a->top / 2)
 	{
-		while (i < a->top - 1)
+		while (d->i < a->top - 1)
 		{
-			ps_doop("ra", a, b, ops);
-			++i;
+			ps_doop("ra", a, b, d);
+			++d->i;
 		}
 	}
 	else
 	{
-		while (i + 1 > 0)
+		while (d->i + 1 > 0)
 		{
-			ps_doop("rra", a, b, ops);
-			--i;
+			ps_doop("rra", a, b, d);
+			--d->i;
 		}
 	}
 }
 
-void	ps_movebtop(int i, t_stack *a, t_stack *b, int *ops)
+void	ps_movebtop(t_doop *d, t_stack *a, t_stack *b)
 {
-	if (i >= b->top / 2)
+	if (d->i >= b->top / 2)
 	{
-		while (i < b->top - 1)
+		while (d->i < b->top - 1)
 		{
-			ps_doop("rb", a, b, ops);
-			++i;
+			ps_doop("rb", a, b, d);
+			++d->i;
 		}
 	}
 	else
 	{
-		while (i + 1 > 0)
+		while (d->i + 1 > 0)
 		{
-			ps_doop("rrb", a, b, ops);
-			--i;
+			ps_doop("rrb", a, b, d);
+			--d->i;
 		}
 	}
 }

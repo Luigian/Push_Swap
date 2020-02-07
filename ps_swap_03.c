@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 11:04:19 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/05 19:33:59 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:45:36 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ps_fillsort(int *sort, t_stack *a)
 	}
 }
 
-void	ps_prepareb(t_stack *a, t_stack *b, int *ops)
+void	ps_prepareb(t_stack *a, t_stack *b, t_doop *d)
 {
 	int		n;
 	int		i;
@@ -62,24 +62,25 @@ void	ps_prepareb(t_stack *a, t_stack *b, int *ops)
 	}
 	if (x == 0)
 		left = ps_findbigger(b);
+	d->i = left;
 	if (left != (b->top - 1))
-		ps_movebtop(left, a, b, ops);
+		ps_movebtop(d, a, b);
 }
 
-void	ps_doop(char *s, t_stack *a, t_stack *b, int *ops)
+void	ps_doop(char *s, t_stack *a, t_stack *b, t_doop *d)
 {
 	if (ft_strcmp(s, "ra") && ft_strcmp(s, "rb") && ft_strcmp(s, "rra") &&\
 		ft_strcmp(s, "rrb"))
 	{
-		if (*ops == 1)
-			ft_printf("ra\n");
-		else if (*ops == 2)
-			ft_printf("rb\n");
-		else if (*ops == 3)
-			ft_printf("rra\n");
-		else if (*ops == 4)
-			ft_printf("rrb\n");
-		*ops = 0;
+		if (d->op == 1)
+			d->fd ? ft_putendl_fd("ra", d->fd) : ft_printf("ra\n");
+		else if (d->op == 2)
+			d->fd ? ft_putendl_fd("rb", d->fd) : ft_printf("rb\n");
+		else if (d->op == 3)
+			d->fd ? ft_putendl_fd("rra", d->fd) : ft_printf("rra\n");
+		else if (d->op == 4)
+			d->fd ? ft_putendl_fd("rrb", d->fd) : ft_printf("rrb\n");
+		d->op = 0;
 		if (ft_strcmp(s, "sa") == 0)
 			sa(a, b);
 		else if (ft_strcmp(s, "sb") == 0)
@@ -88,10 +89,10 @@ void	ps_doop(char *s, t_stack *a, t_stack *b, int *ops)
 			pa(a, b);
 		else if (ft_strcmp(s, "pb") == 0)
 			pb(a, b);
-		ft_printf("%s\n", s);
+		d->fd ? ft_putendl_fd(s, d->fd) : ft_printf("%s\n", s);
 	}
 	else
-		ps_doophelper(s, a, b, ops);
+		ps_doophelper(s, a, b, d);
 }
 
 int		ps_findbigger(t_stack *b)
@@ -115,31 +116,31 @@ int		ps_findbigger(t_stack *b)
 	return (ret);
 }
 
-void	ps_selection(t_stack *a, t_stack *b)
+void	ps_selection(t_stack *a, t_stack *b, int fd)
 {
 	int		sort[a->top];
-	int		i;
 	int		group;
-	int		ops;
+	t_doop	d;
 
+	d.fd = fd;
 	ps_fillsort(sort, a);
 	group = a->top > 100 ? 45 : 20;
-	ops = 0;
+	d.op = 0;
 	while (a->top)
 	{
-		i = ps_findcloser(a, sort, group);
-		if (i == -1)
+		d.i = ps_findcloser(a, sort, group);
+		if (d.i == -1)
 			group += a->top > 100 ? 45 : 20;
 		else
 		{
-			if (i != a->top - 1)
-				ps_moveatop(i, a, b, &ops);
-			ps_prepareb(a, b, &ops);
-			ps_doop("pb", a, b, &ops);
+			if (d.i != a->top - 1)
+				ps_moveatop(&d, a, b);
+			ps_prepareb(a, b, &d);
+			ps_doop("pb", a, b, &d);
 		}
 	}
-	if ((i = ps_findbigger(b)) != b->top - 1)
-		ps_movebtop(i, a, b, &ops);
+	if ((d.i = ps_findbigger(b)) != b->top - 1)
+		ps_movebtop(&d, a, b);
 	while (b->top)
-		ps_doop("pa", a, b, &ops);
+		ps_doop("pa", a, b, &d);
 }

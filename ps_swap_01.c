@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:39:31 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/01 10:20:37 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:40:06 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			ps_progress(t_node *node)
 	return (0);
 }
 
-int			ps_initnode(t_node *node, int ix)
+int			ps_initnode(t_node *node, int ix, int fd)
 {
 	int		i;
 
@@ -94,14 +94,14 @@ int			ps_initnode(t_node *node, int ix)
 			node->br[ix]->br[i++] = NULL;
 		if (ps_checksort(node->br[ix]->a, node->br[ix]->b, &node->br[ix]->nko))
 		{
-			ps_printsol(node->br[ix]->hd, node->br[ix]->p);
+			ps_printsol(node->br[ix]->hd, node->br[ix]->p, fd);
 			return (1);
 		}
 	}
 	i = 0;
 	while (i < 8 && ps_progress(node->br[ix]))
 	{
-		if (ps_initnode(node->br[ix], i))
+		if (ps_initnode(node->br[ix], i, fd))
 			return (1);
 		++i;
 	}

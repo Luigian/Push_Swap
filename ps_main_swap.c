@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 11:05:03 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:49:10 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ps_hdassign(t_node *head, t_stack *a, t_stack *b, int *lv)
 	return (0);
 }
 
-int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
+int		ps_inithead(t_node *head, t_stack *a, t_stack *b, int fd)
 {
 	int		lv;
 	int		i;
@@ -48,7 +48,7 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 		i = 0;
 		while (i < 8)
 		{
-			if (ps_initnode(head, i))
+			if (ps_initnode(head, i, fd))
 				return (1);
 			++i;
 		}
@@ -57,21 +57,42 @@ int		ps_inithead(t_node *head, t_stack *a, t_stack *b)
 	return (0);
 }
 
+void	ps_writeflag(int *fd)
+{
+	char	*line;
+
+	line = NULL;
+	ft_printf("Enter destination file path:\n");
+	get_next_line(0, &line);
+	if (ft_strlen(line) > 100)
+		ps_error(-3);
+	if ((*fd = creat(line, 0644)) == -1)
+		ps_error(-3);
+}
+
 int		main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
 	t_node		head;
+	int			fd;
 
 	if (argc < 2)
 		return (0);
-	ps_storestacks(&a, &b, argc - 1, argv + 1);
+	fd = 0;
+	if (ft_strcmp("-w", argv[1]) == 0)
+	{
+		ps_writeflag(&fd);
+		ps_storestacks(&a, &b, argc - 2, argv + 2);
+	}
+	else
+		ps_storestacks(&a, &b, argc - 1, argv + 1);
 	if (a.top <= 6)
 	{
-		ps_inithead(&head, &a, &b);
+		ps_inithead(&head, &a, &b, fd);
 		ps_freenodes(&head);
 	}
 	else
-		ps_selection(&a, &b);
+		ps_selection(&a, &b, fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 14:01:29 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:51:59 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct		s_checker
 	int				ac;
 	char			**av;
 }					t_checker;
+
+typedef struct		s_doop
+{
+	int				op;
+	int				fd;
+	int				i;
+}					t_doop;
 
 typedef struct		s_node
 {
@@ -116,7 +123,8 @@ void				ps_putbuff(char buff[MAX][MAX]);
 */
 
 int					ps_hdassign(t_node *head, t_stack *a, t_stack *b, int *lv);
-int					ps_inithead(t_node *head, t_stack *a, t_stack *b);
+int					ps_inithead(t_node *head, t_stack *a, t_stack *b, int fd);
+void				ps_writeflag(int *fd);
 
 /*
 ** ps_swap_01.c
@@ -126,7 +134,7 @@ int					ps_notviable(t_node *node, int ix);
 t_stack				*ps_stackdup(t_stack *src);
 void				ps_nodeassign(t_node *node, int ix);
 int					ps_progress(t_node *node);
-int					ps_initnode(t_node *node, int ix);
+int					ps_initnode(t_node *node, int ix, int fd);
 
 /*
 ** ps_swap_02.c
@@ -135,7 +143,7 @@ int					ps_initnode(t_node *node, int ix);
 void				ps_runhelper(t_node *node, int ix);
 void				ps_runoper(t_node *node, int ix);
 void				ps_putnodes(t_node *node);
-void				ps_printsol(t_node *node, t_stack *p);
+void				ps_printsol(t_node *node, t_stack *p, int fd);
 void				ps_freenodes(t_node *node);
 
 /*
@@ -143,10 +151,10 @@ void				ps_freenodes(t_node *node);
 */
 
 void				ps_fillsort(int *sort, t_stack *a);
-void				ps_prepareb(t_stack *a, t_stack *b, int *ops);
-void				ps_doop(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_prepareb(t_stack *a, t_stack *b, t_doop *d);
+void				ps_doop(char *s, t_stack *a, t_stack *b, t_doop *d);
 int					ps_findbigger(t_stack *b);
-void				ps_selection(t_stack *a, t_stack *b);
+void				ps_selection(t_stack *a, t_stack *b, int fd);
 
 /*
 ** ps_swap_04.c
@@ -155,17 +163,17 @@ void				ps_selection(t_stack *a, t_stack *b);
 int					ps_ingroup(int n, int *sort, int group);
 int					ps_findhelper(t_stack *a, int *sort, int group);
 int					ps_findcloser(t_stack *a, int *sort, int group);
-void				ps_moveatop(int i, t_stack *a, t_stack *b, int *ops);
-void				ps_movebtop(int i, t_stack *a, t_stack *b, int *ops);
+void				ps_moveatop(t_doop *d, t_stack *a, t_stack *b);
+void				ps_movebtop(t_doop *d, t_stack *a, t_stack *b);
 
 /*
 ** ps_swap_05.c
 */
 
-void				ps_dora(char *s, t_stack *a, t_stack *b, int *ops);
-void				ps_dorb(char *s, t_stack *a, t_stack *b, int *ops);
-void				ps_dorra(char *s, t_stack *a, t_stack *b, int *ops);
-void				ps_dorrb(char *s, t_stack *a, t_stack *b, int *ops);
-void				ps_doophelper(char *s, t_stack *a, t_stack *b, int *ops);
+void				ps_dora(char *s, t_stack *a, t_stack *b, t_doop *d);
+void				ps_dorb(char *s, t_stack *a, t_stack *b, t_doop *d);
+void				ps_dorra(char *s, t_stack *a, t_stack *b, t_doop *d);
+void				ps_dorrb(char *s, t_stack *a, t_stack *b, t_doop *d);
+void				ps_doophelper(char *s, t_stack *a, t_stack *b, t_doop *d);
 
 #endif
