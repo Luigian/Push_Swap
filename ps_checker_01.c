@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 20:48:12 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 12:17:35 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 08:51:16 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ void	ps_runbuff(char buffer[MAX], t_stack *a, t_stack *b)
 	t_funpa		f[343];
 	int			i;
 
-	f[212] = &sa;
-	f[213] = &sb;
-	f[230] = &ss;
-	f[209] = &pa;
-	f[210] = &pb;
-	f[211] = &ra;
-	f[214] = &rb;
-	f[228] = &rr;
-	f[325] = &rra;
-	f[326] = &rrb;
-	f[342] = &rrr;
+	f[212] = &ps_sa;
+	f[213] = &ps_sb;
+	f[230] = &ps_ss;
+	f[209] = &ps_pa;
+	f[210] = &ps_pb;
+	f[211] = &ps_ra;
+	f[214] = &ps_rb;
+	f[228] = &ps_rr;
+	f[325] = &ps_rra;
+	f[326] = &ps_rrb;
+	f[342] = &ps_rrr;
 	i = 0;
 	f[ps_hash(buffer)](a, b);
 }

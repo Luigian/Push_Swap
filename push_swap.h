@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:12:42 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 20:51:59 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 08:45:40 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,27 @@ typedef void		(*t_funpa)(t_stack *a, t_stack *b);
 ** ps_oper_01.c
 */
 
-void				sa(t_stack *a, t_stack *b);
-void				sb(t_stack *a, t_stack *b);
-void				ss(t_stack *a, t_stack *b);
-void				pa(t_stack *a, t_stack *b);
-void				pb(t_stack *a, t_stack *b);
+void				ps_sa(t_stack *a, t_stack *b);
+void				ps_sb(t_stack *a, t_stack *b);
+void				ps_ss(t_stack *a, t_stack *b);
+void				ps_pa(t_stack *a, t_stack *b);
+void				ps_pb(t_stack *a, t_stack *b);
 
 /*
 ** ps_oper_02.c
 */
 
-void				ra(t_stack *a, t_stack *b);
-void				rb(t_stack *a, t_stack *b);
-void				rr(t_stack *a, t_stack *b);
+void				ps_ra(t_stack *a, t_stack *b);
+void				ps_rb(t_stack *a, t_stack *b);
+void				ps_rr(t_stack *a, t_stack *b);
 
 /*
 ** ps_oper_03.c
 */
 
-void				rra(t_stack *a, t_stack *b);
-void				rrb(t_stack *a, t_stack *b);
-void				rrr(t_stack *a, t_stack *b);
+void				ps_rra(t_stack *a, t_stack *b);
+void				ps_rrb(t_stack *a, t_stack *b);
+void				ps_rrr(t_stack *a, t_stack *b);
 
 /*
 ** ps_tools_01.c

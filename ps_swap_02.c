@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:44:25 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 17:39:34 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 08:54:39 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	ps_runhelper(t_node *node, int ix)
 	if (ix == 4)
 	{
 		node->name = "ra";
-		ra(node->a, node->b);
+		ps_ra(node->a, node->b);
 	}
 	else if (ix == 5)
 	{
 		node->name = "rb";
-		rb(node->a, node->b);
+		ps_rb(node->a, node->b);
 	}
 	else if (ix == 6)
 	{
 		node->name = "rra";
-		rra(node->a, node->b);
+		ps_rra(node->a, node->b);
 	}
 	else if (ix == 7)
 	{
 		node->name = "rrb";
-		rrb(node->a, node->b);
+		ps_rrb(node->a, node->b);
 	}
 }
 
@@ -41,22 +41,22 @@ void	ps_runoper(t_node *node, int ix)
 	if (ix == 0)
 	{
 		node->name = "sa";
-		sa(node->a, node->b);
+		ps_sa(node->a, node->b);
 	}
 	else if (ix == 1)
 	{
 		node->name = "sb";
-		sb(node->a, node->b);
+		ps_sb(node->a, node->b);
 	}
 	else if (ix == 2)
 	{
 		node->name = "pa";
-		pa(node->a, node->b);
+		ps_pa(node->a, node->b);
 	}
 	else if (ix == 3)
 	{
 		node->name = "pb";
-		pb(node->a, node->b);
+		ps_pb(node->a, node->b);
 	}
 	else
 		ps_runhelper(node, ix);

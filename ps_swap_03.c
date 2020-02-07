@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 11:04:19 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 20:45:36 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 08:57:14 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ void	ps_doop(char *s, t_stack *a, t_stack *b, t_doop *d)
 			d->fd ? ft_putendl_fd("rrb", d->fd) : ft_printf("rrb\n");
 		d->op = 0;
 		if (ft_strcmp(s, "sa") == 0)
-			sa(a, b);
+			ps_sa(a, b);
 		else if (ft_strcmp(s, "sb") == 0)
-			sb(a, b);
+			ps_sb(a, b);
 		else if (ft_strcmp(s, "pa") == 0)
-			pa(a, b);
+			ps_pa(a, b);
 		else if (ft_strcmp(s, "pb") == 0)
-			pb(a, b);
+			ps_pb(a, b);
 		d->fd ? ft_putendl_fd(s, d->fd) : ft_printf("%s\n", s);
 	}
 	else

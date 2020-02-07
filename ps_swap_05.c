@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:12:44 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 20:45:10 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 08:58:21 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ps_dora(char *s, t_stack *a, t_stack *b, t_doop *d)
 {
-	ra(a, b);
+	ps_ra(a, b);
 	if (d->op == 0)
 		d->op = 1;
 	else if (d->op == 1)
@@ -38,7 +38,7 @@ void	ps_dora(char *s, t_stack *a, t_stack *b, t_doop *d)
 
 void	ps_dorb(char *s, t_stack *a, t_stack *b, t_doop *d)
 {
-	rb(a, b);
+	ps_rb(a, b);
 	if (d->op == 0)
 		d->op = 2;
 	else if (d->op == 1)
@@ -62,7 +62,7 @@ void	ps_dorb(char *s, t_stack *a, t_stack *b, t_doop *d)
 
 void	ps_dorra(char *s, t_stack *a, t_stack *b, t_doop *d)
 {
-	rra(a, b);
+	ps_rra(a, b);
 	if (d->op == 0)
 		d->op = 3;
 	else if (d->op == 1)
@@ -86,7 +86,7 @@ void	ps_dorra(char *s, t_stack *a, t_stack *b, t_doop *d)
 
 void	ps_dorrb(char *s, t_stack *a, t_stack *b, t_doop *d)
 {
-	rrb(a, b);
+	ps_rrb(a, b);
 	if (d->op == 0)
 		d->op = 4;
 	else if (d->op == 1)
