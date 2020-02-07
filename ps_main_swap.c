@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 09:42:37 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 20:49:10 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:24:26 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ int		main(int argc, char **argv)
 	t_stack		b;
 	t_node		head;
 	int			fd;
+	int			i;
 
 	if (argc < 2)
 		return (0);
 	fd = 0;
+	i = 0;
 	if (ft_strcmp("-w", argv[1]) == 0)
 	{
 		ps_writeflag(&fd);
@@ -92,7 +94,7 @@ int		main(int argc, char **argv)
 		ps_inithead(&head, &a, &b, fd);
 		ps_freenodes(&head);
 	}
-	else
+	else if (ps_checksort(&a, &b, &i) == 0)
 		ps_selection(&a, &b, fd);
 	return (0);
 }
