@@ -1,23 +1,25 @@
-<img src="resources/images/pf_banner.png" width="1200">
+<img src="resources/images/ps_banner.png" width="1200">
 
 # Push_Swap - 42 School Project 
 
 ## Highlights
 
-* This project is about re-building the printf function with most of its functionality by using only other self-built functions based on the C standard library.
+* This project was about sorting an array of integers using 11 given operations. Each operation is considered as a move, and the idea is to sort the array in the less amount of moves.
 
-* ft_printf writes output to stdout according to a format and returns the number of characters printed or a negative number in case of error.  
+* The 11 allowed operations are: sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb and rrr.
 
-* ft_printf is prototyped similarly to printf: `int ft_printf(const char* format, ...)`
+* To perform these operations i have two stacks, the first one known as "A" will contain the to-sort array, and the second known as "B" will be an empty stack in wich i was able to push elements from "A" as part of the sorting process.
 
-* ft_printf is a variadic function wich means that it can print a varying number of arguments of varying types.
-
-* The string `const char* format` is composed by ordinary characters (not %), which are copied unchanged to the output; and conversion specifications introduced by `%` and ended by the type of conversion which must correspond properly to the next argument in the argument list `...`. The following may appear in a conversion sequence: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
   `%[argument][flag][width][precision][length]type`
   
-* ft_printf is a great opportunity to implement a basic 'dispatcher' in C via the use of an array of function’s pointers. 
-
 ## Functions Hierarchy
 <img src="resources/images/pf_funhierarchy.png" width="1000">
 
