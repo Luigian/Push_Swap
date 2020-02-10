@@ -11,7 +11,10 @@
 * To perform these operations i have two stacks, the first one known as "A" will contain the to-sort array, and the second known as "B" will be an empty stack in wich i was able to push elements from "A" as part of the sorting process.
 
 <img src="resources/images/ps_operations.png" width="1000">
- 
+
+## My approach for arrays of less than 6 elements
+
+As they say: "The key to a successful ft_printf is a well-structured and good extensible code", so i try to give me the time to understand how the true printf worked to be prepared for the battle and this is the summary of what I did:
  
  
  
