@@ -6,7 +6,7 @@
 
 * This project was about sorting an array of integers using 11 given operations. Each operation is considered as a move, and the idea is to sort the array in the less amount of moves.
 
-* The 11 allowed operations are: sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb and rrr.
+* The 11 allowed operations are: sa, sb, ss, ra, rb, rr, rra, rrb, rrr, pa and pb.
 
 * To perform these operations i have two stacks, the first one known as "A" will contain the to-sort array, and the second known as "B" will be an empty stack in wich i was able to push elements from "A" as part of the sorting process.
 
