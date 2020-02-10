@@ -10,7 +10,7 @@
 
 * To perform these operations i have two stacks, the first one known as "A" will contain the to-sort array, and the second known as "B" will be an empty stack in wich i was able to push elements from "A" as part of the sorting process.
 
- 
+<img src="resources/images/ps_operations.png" width="1000">
  
  
  
