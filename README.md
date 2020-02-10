@@ -14,14 +14,22 @@
 
 ## My approach for arrays of less than 6 elements
 
-As they say: "The key to a successful ft_printf is a well-structured and good extensible code", so i try to give me the time to understand how the true printf worked to be prepared for the battle and this is the summary of what I did:
+The idea is to create a trie in wich every possible secuence of operations can be executed. This way i'll be sure that i was finding the shortest solution. But the problem was that i was using a lot of memory to perform all the calculations. 
+
+Even for sorting arrays of 4 elements it was taking a lot of time. So i needed to optimize this method doing the following:
+
+a) Reducing the operations from 11 to only 8. By leaving ss, rr and rrr to be checked in a second phase. Every time i find  a secuence of sa-sb or sb-sa i can replace it for ss. The same for rr (ra-rb or rb-ra) and rrr (rra-rrb or rrb-rra).
+
+b) Interrupting some branches from keep growing if the array in it start to become more unsorted, or just not progress at all.
+
+
  
  
  
  
  
 
-  `%[argument][flag][width][precision][length]type`
+`%[argument][flag][width][precision][length]type`
   
 ## Functions Hierarchy
 <img src="resources/images/pf_funhierarchy.png" width="1000">
