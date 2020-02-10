@@ -20,7 +20,9 @@ Even for sorting arrays of 4 elements it was taking a lot of time. So i needed t
 
 a) Reducing the operations from 11 to only 8 by leaving ss, rr and rrr to be checked in a second phase. In that second phase every time i find  a secuence of sa-sb or sb-sa i can replace it for ss; the same for rr (ra-rb or rb-ra) and rrr (rra-rrb or rrb-rra).
 
-b) Interrupting some branches from keep growing if the array in it become more unsorted, or just don't show a minimum of progress.
+b) Preventing branches with non-applicable operations (ex: sb, rb, rrb or pa at the beginning).
+
+c) Interrupting some branches from keep growing if the array in it become more unsorted, or don't show a minimum of progress.
 
 
  
