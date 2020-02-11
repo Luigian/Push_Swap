@@ -6,7 +6,7 @@
 /*   By: lusanche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 19:43:59 by lusanche          #+#    #+#             */
-/*   Updated: 2020/02/06 12:09:57 by lusanche         ###   ########.fr       */
+/*   Updated: 2020/02/10 19:28:20 by lusanche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ void	ps_storehelper(char *s, t_stack *a)
 	while (i--)
 	{
 		a->array[a->top++] = ps_atoi(m[i]);
+		free(m[i]);
 		if (ps_uniquearg(a) == 0)
 			ps_error(-1);
 	}
+	free(m);
 }
 
 void	ps_storestacks(t_stack *a, t_stack *b, int ac, char **av)
