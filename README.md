@@ -28,6 +28,16 @@ The trie is executed level by level and every operation is checked, if at any gi
  
  ## The algorithm for arrays with 100 or 500 elements
  
+ The first step is to copy, from the smaller to the bigger, all the elements of the stack "A" into a new array. This array will be used as a guide to identify every element inside a group according to its position.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
 `%[argument][flag][width][precision][length]type`
