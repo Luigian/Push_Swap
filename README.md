@@ -26,7 +26,7 @@ c) Interrupting some branches from keep growing if the array in it become more u
 
 The trie is executed level by level and every operation is checked, if at any given point the stack "A" is sorted and the stack "B" is empty, the trie stops, and the according secuence of operations that leaded into this leaf is printed as the solution.
  
- ## The algorithm for arrays with more than 6 elements
+ ## The algorithm for arrays with 100 or 500 elements
  
  
 
