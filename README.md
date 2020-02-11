@@ -24,8 +24,7 @@ b) Preventing branches with non-applicable operations (ex: sb, rb, rrb or pa at 
 
 c) Interrupting some branches from keep growing if the array in it become more unsorted, or don't show a minimum of progress.
 
-
- 
+<img src="resources/images/ps_tries.png" width="1000">
  
  
  
