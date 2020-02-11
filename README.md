@@ -6,19 +6,32 @@
 
 * This project was about sorting an array of integers using 11 given operations. Each operation is considered as a move, and the idea is to sort the array in the less amount of moves.
 
-* The 11 allowed operations are: sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb and rrr.
+* The 11 allowed operations are: sa, sb, ss, ra, rb, rr, rra, rrb, rrr, pa and pb.
 
 * To perform these operations i have two stacks, the first one known as "A" will contain the to-sort array, and the second known as "B" will be an empty stack in wich i was able to push elements from "A" as part of the sorting process.
 
- 
- 
+<img src="resources/images/ps_operations.png" width="1000">
+
+## My approach for arrays of less than 6 elements
+
+The idea is to create a trie in wich every possible secuence of operations can be executed. This way i'll be sure that i was finding the shortest solution. But the problem was that i was using a lot of memory to perform all the calculations. 
+
+Even for sorting arrays of 4 elements it was taking a lot of time. So i needed to optimize this method doing the following:
+
+a) Reducing the operations from 11 to only 8 by leaving ss, rr and rrr to be checked in a second phase. In that second phase every time i find  a secuence of sa-sb or sb-sa i can replace it for ss; the same for rr (ra-rb or rb-ra) and rrr (rra-rrb or rrb-rra).
+
+b) Preventing branches with non-applicable operations (ex: sb, rb, rrb or pa at the beginning).
+
+c) Interrupting some branches from keep growing if the array in it become more unsorted, or don't show a minimum of progress.
+
+
  
  
  
  
  
 
-  `%[argument][flag][width][precision][length]type`
+`%[argument][flag][width][precision][length]type`
   
 ## Functions Hierarchy
 <img src="resources/images/pf_funhierarchy.png" width="1000">
