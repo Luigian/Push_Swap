@@ -28,7 +28,14 @@ The trie is executed level by level and every operation is checked, if at any gi
  
  ## The algorithm for arrays with 100 or 500 elements
  
- The first step is to copy, from the smaller to the bigger, all the elements of the stack "A" into a new array. This array will be used as a guide to identify every element inside a group according to its position.   
+ The first step is to copy, from the smaller to the bigger, all the elements of the stack "A" into a new array. This array will be used as a guide to identify every element inside a group according to its position.
+ 
+ In the case of a stack of 100 elements, there will be 5 groups of 20 elements each.
+ In the case of a stack of 500 elements, there will be 11 groups of 11 elements each.
+ 
+ The second step is to move all the elements from the stack "A" to the stack "B", one group at a time, by group order. The process is to move the element wich is the closest to the Top of the stack and prepare the stack "B", by shifting it, to receive this element in the correct place.
+ 
+ The third step is to move all the elements of stack "B" back to the stack "A".
  
  
  
