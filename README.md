@@ -18,7 +18,7 @@ The idea is to create a trie in wich every possible secuence of operations can b
 
 Even for sorting arrays of 4 elements it was taking a lot of time. So i needed to optimize this method doing the following:
 
-a) Reducing the operations from 11 to only 8 by leaving ss, rr and rrr to be checked in a second phase. In that second phase every time i find  a secuence of sa-sb or sb-sa i can replace it for ss; the same for rr (ra-rb or rb-ra) and rrr (rra-rrb or rrb-rra).
+a) Reducing the number of operations from 11 to 8 by checking ss, rr and rrr in a second phase. In that second phase every time i find  a pair of sa-sb or sb-sa i can replace it for ss; the same for rr (ra-rb or rb-ra) and rrr (rra-rrb or rrb-rra).
 
 b) Preventing branches with non-applicable operations (ex: sb, rb, rrb or pa at the beginning).
 
