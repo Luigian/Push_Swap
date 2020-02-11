@@ -12,7 +12,7 @@
 
 <img src="resources/images/ps_operations.png" width="1000">
 
-## My approach for arrays of less than 6 elements
+## My approach for arrays with less than 6 elements
 
 The idea is to create a trie in wich every possible secuence of operations can be executed. This way i'll be sure that i was finding the shortest solution. But the problem was that i was using a lot of memory to perform all the calculations. Even for sorting arrays of 4 elements it was taking a lot of time. So i needed to optimize this method doing the following:
 
@@ -24,7 +24,7 @@ c) Interrupting some branches from keep growing if the array in it become more u
 
 <img src="resources/images/ps_trie.png" width="1000">
  
- 
+ ## The algorithm for arrays with more than 6 elements
  
  
 
