@@ -23,6 +23,8 @@ b) Preventing branches with non-applicable operations (ex: sb, rb, rrb or pa at 
 c) Interrupting some branches from keep growing if the array in it become more unsorted, or don't show a minimum of progress.
 
 <img src="resources/images/ps_trie.png" width="1000">
+
+The trie is executed level by level and every operation is checked, if the stack "A" is sorted and the stack "B" is empty, the trie stops, and the solution is printed.
  
  ## The algorithm for arrays with more than 6 elements
  
