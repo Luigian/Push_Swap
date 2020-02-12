@@ -31,7 +31,7 @@ The trie is executed level by level and every operation is checked, if at any gi
  The first step is to copy, from the smaller to the bigger, all the elements of the stack "A" into a new array. This array will be used as a guide to identify every element inside a group according to its position.
  
  In the case of a stack of 100 elements, there will be 5 groups of 20 elements each.
- <img src="resources/images/ps_hundred.png" width="1000">
+ <img src="resources/images/ps_hundred.png" width="700">
  
  In the case of a stack of 500 elements, there will be 11 groups of 11 elements each.
  <img src="resources/images/ps_fivehundred.png" width="1000">
