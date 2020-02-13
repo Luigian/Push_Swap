@@ -54,7 +54,6 @@ After moving all the elements of the first group, then we proceed to the second 
 Finally, once the stack "A" is empty, the third step is to move back all the elements from stack "B" to stack "A".
 
 In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
-<img src="resources/images/ps_fivehundred.png" width="1000">
  
  
  
