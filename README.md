@@ -85,7 +85,7 @@ After this, i started to write the code in the following order:
 * After that, i started with bonuses: \*, j, z, U, e, g, $, ', b and k.
 
 ## Installation
-`make` | Compiles and creates two programs: `checker` and `push_swap`.
+`make` | Compiles and creates two programs: `push_swap` and `checker`.
 
 ## Usage
 `./push_swap [integers array]` | Prints the solution.
