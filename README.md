@@ -157,6 +157,7 @@ After this, i started to write the code in the following order:
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019 
+
 [42 Silicon Valley][42], Freemont, CA
 
 [linkedin]: https://www.linkedin.com/in/luis-sanchez-13bb3b189/
