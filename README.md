@@ -106,7 +106,7 @@ The `integers array` can be:
 
 ## push_swap Input & Output
 <img src="resources/images/ps_input_01.png" width="200">
-<img src="resources/images/ps_output_01.png" width="350">
+<img src="resources/images/ps_output_01.png" width="200">
 
 ## checker Input & Output
 <img src="resources/images/ps_input_02.png" width="200">
