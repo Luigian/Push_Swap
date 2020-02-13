@@ -156,7 +156,7 @@ After this, i started to write the code in the following order:
 <img src="resources/images/pf_output.png" width="300">
 
 ## Credits
-[*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42], 
+[*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
 
 [linkedin]: https://www.linkedin.com/in/luis-sanchez-13bb3b189/
 [42]: http://42.us.org "42 USA"
