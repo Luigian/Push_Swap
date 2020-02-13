@@ -33,7 +33,7 @@ The trie is executed level by level and every operation is checked, if at any gi
  In the case of a stack of 100 elements, there will be 5 groups of 20 elements each.
  <img src="resources/images/ps_hundred.png" width="700">
  
- In the case of a stack of 500 elements, there will be 11 groups of 11 elements each.
+ In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
  <img src="resources/images/ps_fivehundred.png" width="1000">
  
  The second step is to move all the elements from the stack "A" to the stack "B", one group at a time, by group order. The process is to move the element wich is the closest to the Top of the stack and prepare the stack "B", by shifting it, to receive this element in the correct place.
