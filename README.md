@@ -35,6 +35,9 @@ The trie is executed level by level and every operation is checked, if at any gi
 
 Knowing the sorted secuence thanks to "guide", we can divide in groups stack "A", by using the indexes of "guide". In the case of a 100 elements array, there will be 5 groups of 20 elements each, every 20 elements wi will consider a new group.
 <img src="resources/images/ps_indexes.png" width="1000">
+
+This can give us a picture of where are the elements of every group in "A".
+<img src="resources/images/ps_groupsa.png" width="1000">
  
 
 
