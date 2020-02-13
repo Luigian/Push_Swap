@@ -156,12 +156,8 @@ After this, i started to write the code in the following order:
 <img src="resources/images/pf_output.png" width="300">
 
 ## Credits
-[*Luis Sanchez*][linkedin]
-2019. Freemont, CA
-42 Silicon Valley
-
-## About 42 School
-[42][42] is a free, non profit, project-based, peer-to-peer learning coding school. It originated in France and now has over 20 campuses all over the world. More information can be found [here][42]
+[*Luis Sanchez*][linkedin] 2019 
+[42 Silicon Valley][42], Freemont, CA
 
 [linkedin]: https://www.linkedin.com/in/luis-sanchez-13bb3b189/
 [42]: http://42.us.org "42 USA"
