@@ -37,6 +37,7 @@ Knowing the sorted secuence thanks to "guide", we can divide in groups stack "A"
 <img src="resources/images/ps_indexes.png" width="1000">
 
 This can give us a picture of where are the elements of every group in "A".
+
 <img src="resources/images/ps_groupa.png" width="1000">
  
 
