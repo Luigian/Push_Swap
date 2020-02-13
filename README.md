@@ -44,7 +44,7 @@ This can give us a picture of where are the elements of every group in "A".
  
 The second step is to move all the elements of the first group from the stack "A" to the stack "B". We always move the element wich is the closest to the Top of the stack. Before moving it, we maybe shift up or down the stack "B" to insert the new element in the correct place. So "B" will be always sorted from the smaller to the bigger.
 
-
+<img src="resources/images/ps_closest.png" width="1000">
 
 In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
 <img src="resources/images/ps_fivehundred.png" width="1000">
