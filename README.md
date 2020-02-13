@@ -50,12 +50,15 @@ One localized the closest and moved to the top, we need to prepare the stack "B"
 
 <img src="resources/images/ps_moveb.png" width="1000">
 
+After moving all the elements of the first group, then we proceed to the second group, an so on.
+Finally, once the stack "A" is empty, the third step is to move back all the elements from stack "B" to stack "A".
+
 In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
 <img src="resources/images/ps_fivehundred.png" width="1000">
  
  
  
- The third step is to move all the elements of stack "B" back to the stack "A".
+ 
  
  
  
