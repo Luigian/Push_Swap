@@ -48,6 +48,8 @@ The second step is to move all the elements of the first group from the stack "A
 
 One localized the closest and moved to the top, we need to prepare the stack "B" to receive it. We maybe shift up or down the stack "B" (rb or rrb) to insert the new element in the correct place. So "B" will always be sorted from the smaller to the bigger.
 
+<img src="resources/images/ps_moveb.png" width="1000">
+
 In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
 <img src="resources/images/ps_fivehundred.png" width="1000">
  
