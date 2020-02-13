@@ -144,12 +144,10 @@ After this, i started to write the code in the following order:
 * After that, i started with bonuses: \*, j, z, U, e, g, $, ', b and k.
 
 ## Installation
-`make && make clean` | Compiles and creates the library `libftprintf.a`.
-
-`make re && make clean` | Recompiles.
+`make` | Compiles and creates two programs: `checker` and `push_swap`.
 
 ## Usage
-`gcc resources/test/test_main.c libftprintf.a && ./a.out` | Prints the test main provided as example. 
+`./push_swap` | Prints the test main provided as example. 
 
 ## Input & Output
 <img src="resources/images/pf_input.png" width="300">
