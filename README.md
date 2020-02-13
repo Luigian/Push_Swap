@@ -105,8 +105,8 @@ The `integers array` can be:
 `./checker -v [integers array]` | Reads the solution from the standard input and display, at every time, a visual representation of the stacks current status.
 
 ## Input & Output
-<img src="resources/images/pf_input.png" width="300">
-<img src="resources/images/pf_output.png" width="300">
+<img src="resources/images/ps_input.png" width="300">
+<img src="resources/images/ps_output.png" width="300">
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
