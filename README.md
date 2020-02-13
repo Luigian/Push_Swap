@@ -148,9 +148,10 @@ After this, i started to write the code in the following order:
 
 ## Usage
 `./push_swap [integers array]` | Prints the solution.
+
 `./checker [integers array]` | Reads the solution from the standard input, and prints "OK" or "KO".
 
-The integers array can be:
+The `integers array` can be:
 - Multiple ints as arguments (3 2 1 0).
 - One single char string argument ("3 2 1 0").
 - A combination of both (3 "2 1" 0).
