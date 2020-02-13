@@ -106,7 +106,7 @@ The `integers array` can be:
 
 ## Input & Output
 <img src="resources/images/ps_input.png" width="300">
-<img src="resources/images/ps_output.png" width="300">
+<img src="resources/images/ps_output.png" width="500">
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
