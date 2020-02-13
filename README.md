@@ -104,13 +104,22 @@ The `integers array` can be:
 
 `./checker -v [integers array]` | Reads the solution from the standard input and display, at every time, a visual representation of the stacks current status.
 
-## push_swap Input & Output
-<img src="resources/images/ps_input_01.png" width="200">
-<img src="resources/images/ps_output_01.png" width="200">
-
-## checker Input & Output
-<img src="resources/images/ps_input_02.png" width="220">
-<img src="resources/images/ps_output_02.png" width="330">
+## Inputs & Outputs
+<img src="resources/images/ps_inout_01.png" width="1000">
+<img src="resources/images/ps_inout_02.png" width="1000">
+<img src="resources/images/ps_inout_03.png" width="1000">
+<img src="resources/images/ps_inout_04.png" width="1000">
+<img src="resources/images/ps_inout_05.png" width="1000">
+<img src="resources/images/ps_inout_06.png" width="1000">
+<img src="resources/images/ps_inout_07.png" width="1000">
+<img src="resources/images/ps_inout_08.png" width="1000">
+<img src="resources/images/ps_inout_09.png" width="1000">
+<img src="resources/images/ps_inout_10.png" width="1000">
+<img src="resources/images/ps_inout_11.png" width="1000">
+<img src="resources/images/ps_inout_12.png" width="1000">
+<img src="resources/images/ps_inout_13.png" width="1000">
+<img src="resources/images/ps_inout_14.png" width="1000">
+<img src="resources/images/ps_inout_15.png" width="1000">
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
