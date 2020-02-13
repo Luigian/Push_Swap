@@ -29,25 +29,30 @@ The trie is executed level by level and every operation is checked, if at any gi
  ## The algorithm for arrays with 100 or 500 elements
  
 The first step is to copy, from the smaller to the bigger, all the elements of the stack "A" into a new array. We will refer to this array as "guide", it contains a sorted copy of "A".
- 
+
+
 <img src="resources/images/ps_stacka.png" width="1000"> 
 <img src="resources/images/ps_guide.png" width="1000">
 
 
 This will allow to divide in groups the stack "A" by using the indexes of "guide". In the case of a 100 elements array, there will be 5 groups of 20 elements each.
 
+
 <img src="resources/images/ps_indexes.png" width="1000">
 
 
 A visual representation of the position of every element of every group looks like this:
 
+
 <img src="resources/images/ps_groups.png" width="1000">
  
 The second step is to move all the elements of the first group from the stack "A" to the stack "B". This is done by moving every time the element wich is the closest to the top of the stack. In other words, the one that needs the less amount of "shifting up" or "shifting down" (ra or rra).
 
+
 <img src="resources/images/ps_closest.png" width="1000">
 
 Once the closest is localized and moved to the top of "A", the stack "B" need to be 'prepared' to receive the new element. This will shift up or down the stack "B" (rb or rrb) in order to insert the new element in the correct place. So "B" will always stay sorted from the smaller to the bigger.
+
 
 <img src="resources/images/ps_moveb.png" width="1000">
 
