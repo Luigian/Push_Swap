@@ -147,7 +147,18 @@ After this, i started to write the code in the following order:
 `make` | Compiles and creates two programs: `checker` and `push_swap`.
 
 ## Usage
-`./push_swap` | Prints the test main provided as example. 
+`./push_swap [integers array]` | Prints the solution.
+`./checker [integers array]` | Reads the solution from the standard input, and prints "OK" or "KO".
+
+The integers array can be:
+- Multiple ints as arguments (3 2 1 0).
+- One single char string argument ("3 2 1 0").
+- A combination of both (3 "2 1" 0).
+
+## Optional flags
+`./push_swap -w [integers array]` | Prints the solution in a file.
+`./checker -r [integers array]` | Reads the solution from a file.
+`./checker -v [integers array]` | Reads the solution from the standard input and display, at every time, a visual representation of the stacks current status.
 
 ## Input & Output
 <img src="resources/images/pf_input.png" width="300">
