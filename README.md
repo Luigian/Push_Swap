@@ -43,7 +43,7 @@ A visual representation of the position of every element of every group looks li
 
 <img src="resources/images/ps_groups.png" width="1000">
  
-The second step is to move all the elements of the first group from the stack "A" to the stack "B". This is done by moving every time the element, of the first group, wich is the closest to the top of the stack. In other words, the one that needs the less amount of "shifting up" or "shifting down" (ra or rra).
+The second step is to move all the elements of the first group from the stack "A" to the stack "B". This is done by moving every time the element wich is the closest to the top of the stack. In other words, the one that needs the less amount of "shifting up" or "shifting down" (ra or rra).
 
 <img src="resources/images/ps_closest.png" width="1000">
 
