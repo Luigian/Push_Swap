@@ -40,7 +40,7 @@ Now we can divide in groups stack "A" by using the indexes of "guide". In the ca
 
 This can give us a picture of where are the elements of every group in "A".
 
-<img src="resources/images/ps_groupa.png" width="1000">
+<img src="resources/images/ps_groups.png" width="1000">
  
 The second step is to move all the elements of the first group from the stack "A" to the stack "B". We always move the element wich is the closest to the Top of the stack, on other words, the one that represents the less amount of shifting up or down the stack (ra or rra).
 
