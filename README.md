@@ -109,8 +109,8 @@ The `integers array` can be:
 <img src="resources/images/ps_output_01.png" width="200">
 
 ## checker Input & Output
-<img src="resources/images/ps_input_02.png" width="230">
-<img src="resources/images/ps_output_02.png" width="350">
+<img src="resources/images/ps_input_02.png" width="200">
+<img src="resources/images/ps_output_02.png" width="330">
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
