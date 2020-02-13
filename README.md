@@ -158,7 +158,9 @@ The `integers array` can be:
 
 ## Optional flags
 `./push_swap -w [integers array]` | Prints the solution in a file.
+
 `./checker -r [integers array]` | Reads the solution from a file.
+
 `./checker -v [integers array]` | Reads the solution from the standard input and display, at every time, a visual representation of the stacks current status.
 
 ## Input & Output
