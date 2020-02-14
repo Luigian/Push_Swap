@@ -60,7 +60,7 @@ In the case of a stack of 500 elements, there will be 11 groups of 45 elements e
 
 I recommend to take a look to this videos from CS50:
 
-* [Computational Complexity]: https://www.youtube.com/watch?v=YoZPTyGL2IQ
+* [Computational Complexity][computational complexity]
 * Read about variadic functions on internet.
 * Read the man: `man 3 stdarg` `man printf` `man 3 printf`.
 * Learn about format conversion specifications for printf.
@@ -126,5 +126,6 @@ The `integers array` can be:
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
 
+[computational complexity]: https://www.youtube.com/watch?v=YoZPTyGL2IQ
 [linkedin]: https://www.linkedin.com/in/luis-sanchez-13bb3b189/
 [42]: http://42.us.org "42 USA"
