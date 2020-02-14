@@ -68,7 +68,10 @@ I recommend to take a look to this videos from CS50:
 * [Tries][tries]
 
 ## Installation
+At the root of this repository:
+
 `cd push_swap` | Go to the compilation directory.
+
 `make` | Compiles and creates two programs: `push_swap` and `checker`.
 
 ## Usage
