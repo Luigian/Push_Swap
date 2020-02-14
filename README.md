@@ -56,8 +56,6 @@ In the case of a stack of 500 elements, there will be 11 groups of 45 elements e
 
 ## Logbook
 
-
-
 I recommend to take a look to this videos from CS50:
 
 * [Computational Complexity][computational complexity]
@@ -66,32 +64,8 @@ I recommend to take a look to this videos from CS50:
 * [Insertion Sort][insertion sort]
 * [Merge Sort][merge sort]
 * [Algorithms Summary][algorithms summary]
-<img src="resources/images/ps_algsum.png" width="700">
-
-* Read about variadic functions on internet.
-* Read the man: `man 3 stdarg` `man printf` `man 3 printf`.
-* Learn about format conversion specifications for printf.
-* Learn more about data types.
-* Learn about integers lengths: `char`, `short`, `long`, `long long`, `nan`.
-* Learn about floats: single precision, double precision and extended precision. 
-* I made the next table to visualize the last two points:
-<img src="resources/images/pf_lengths_table.png" width="1000">
-
-* I made the following table to help me see, by testing the real printf, how the different types worked with the different combinations of format specifications.
-<img src="resources/images/pf_fmtspecs_table_1.png" width="1000">
-
-* An extension of the previous table with a more concise display was very practical while coding.
-<img src="resources/images/pf_fmtspecs_table_2.png" width="700">
-
-After this, i started to write the code in the following order:
-
-* Storing the format specifications (flags, width, precision, length) in variables of a structure.
-* The functions to print d, i and u.
-* Then the functions to print o, x, X and p.
-* Then the functions to print c, s.
-* The most difficult one for me, the function to print f.
-* Then i worked on big numbers (negatives and positives), zero and null cases.
-* After that, i started with bonuses: \*, j, z, U, e, g, $, ', b and k.
+* [Stacks][stacks]
+* [Tries][tries]
 
 ## Installation
 `make` | Compiles and creates two programs: `push_swap` and `checker`.
@@ -139,6 +113,8 @@ The `integers array` can be:
 [insertion sort]: https://www.youtube.com/watch?v=O0VbBkUvriI
 [merge sort]: https://www.youtube.com/watch?v=Ns7tGNbtvV4
 [algorithms summary]: https://www.youtube.com/watch?v=ktWL3nN38ZA
+[stacks]: https://www.youtube.com/watch?v=hVsNqhEthOk
+[tries]: https://www.youtube.com/watch?v=MC-iQHFdEDI
 
 [linkedin]: https://www.linkedin.com/in/luis-sanchez-13bb3b189/
 [42]: http://42.us.org "42 USA"
