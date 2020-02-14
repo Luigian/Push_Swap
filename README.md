@@ -54,11 +54,13 @@ Finally, once the stack "A" is empty, the third step is to move back all the ele
 
 In the case of a stack of 500 elements, there will be 11 groups of 45 elements each.
 
-## Process Logbook
+## Logbook
 
-As they say: "The key to a successful ft_printf is a well-structured and good extensible code", so i try to give me the time to understand how the true printf worked to be prepared for the battle and this is the summary of what I did:
 
-* Read the pdf.
+
+I recommend to take a look to this videos from CS50:
+
+* [Computational Complexity][https://www.youtube.com/watch?v=YoZPTyGL2IQ]
 * Read about variadic functions on internet.
 * Read the man: `man 3 stdarg` `man printf` `man 3 printf`.
 * Learn about format conversion specifications for printf.
