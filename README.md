@@ -66,6 +66,7 @@ I recommend to take a look to this videos from CS50:
 * [Insertion Sort][insertion sort]
 * [Merge Sort][merge sort]
 * [Algorithms Summary][algorithms summary]
+<img src="resources/images/ps_algsum.png" width="700">
 
 * Read about variadic functions on internet.
 * Read the man: `man 3 stdarg` `man printf` `man 3 printf`.
