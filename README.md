@@ -109,7 +109,7 @@ The `integers array` can be:
 <img src="resources/images/ps_inout_15.png" width="1000">
 
 ## Final Thoughts
-This project was a good opportunity to put in practice different data structures as: stacks, hash tables and tries. Additionally i really enjoyed taking the moment to thing outside the box and looking for optimization and creative solutions.
+This project was a good opportunity to put in practice different data structures as: stacks, hash tables and tries. Additionally, I really enjoyed taking the moment to thing outside the box and looking for optimization and creative solutions.
 
 ## Credits
 [*Luis Sanchez*][linkedin] 2019, [42 Silicon Valley][42].
